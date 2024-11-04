@@ -10,7 +10,7 @@ document.querySelector(".theme-toggle").addEventListener("click",() => {
 
 function toggleRootClass(){
     const current = document.documentElement.getAttribute('data-bs-theme');
-    const inverted = current == 'dark' ? 'light' : 'dark';
+    const inverted = current == 'light' ? 'dark' : 'light';
     document.documentElement.setAttribute('data-bs-theme',inverted);
 }
 
