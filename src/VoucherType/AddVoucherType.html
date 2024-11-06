@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thêm Voucher</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css"
+    />
+    <script
+      src="https://kit.fontawesome.com/ae360af17e.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="../../css/style.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <!-- Sidebar -->
+      <aside id="sidebar" class="js-sidebar">
+        <div class="h-100">
+          <div class="sidebar-logo">
+            <a href="#">CodzSword</a>
+          </div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-header">Admin Elements</li>
+            <li class="sidebar-item">
+              <a href="#" class="sidebar-link">
+                <i class="fa-solid fa-list pe-2"></i>Dashboard
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a
+                href="#"
+                class="sidebar-link collapsed"
+                data-bs-target="#tours"
+                data-bs-toggle="collapse"
+                aria-expanded="false"
+              >
+                <i class="fa-solid fa-sliders pe-2"></i>Tours
+              </a>
+              <ul
+                id="tours"
+                class="sidebar-dropdown list-unstyled collapse"
+                data-bs-parent="#sidebar"
+              >
+                <li class="sidebar-item">
+                  <a href="./ListTour.html" class="sidebar-link">List Tours</a>
+                </li>
+                <li class="sidebar-item">
+                  <a href="./AddTour.html" class="sidebar-link">Add Tours</a>
+                </li>
+              </ul>
+            </li>
+            <li class="sidebar-item">
+              <a
+                href="#"
+                class="sidebar-link collapsed"
+                data-bs-target="#vouchers"
+                data-bs-toggle="collapse"
+                aria-expanded="false"
+              >
+                <i class="fa-solid fa-gift pe-2"></i>Vouchers
+              </a>
+              <ul
+                id="vouchers"
+                class="sidebar-dropdown list-unstyled collapse"
+                data-bs-parent="#sidebar"
+              >
+                <li class="sidebar-item">
+                  <a href="#" class="sidebar-link">Add Voucher</a>
+                </li>
+                <li class="sidebar-item">
+                  <a href="./ListVoucher.html" class="sidebar-link"
+                    >List Vouchers</a
+                  >
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <div class="main">
+        <header class="p-3 bg-primary text-white">
+          <div class="container">
+            <div
+              class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
+            >
+              <a
+                href="/"
+                class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none"
+              >
+                <i class="fa-solid fa-user-shield fs-3 me-2"></i>
+                <span class="fs-4">Admin Dashboard</span>
+              </a>
+              <div class="ms-auto">
+                <a href="./Login.html" class="btn btn-outline-light me-2"
+                  >Logout</a
+                >
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <!-- Content Form -->
+        <main class="content px-3 py-4">
+          <h3>Thêm Voucher Mới</h3>
+          <form
+            id="addVoucherForm"
+            action="https://trip-aura-server.vercel.app/voucherType/api/add"
+            method="POST"
+          >
+            <div class="mb-3">
+              <label for="voucherName" class="form-label">Voucher Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="voucherName"
+                name="name"
+                placeholder="Nhập tên Voucher"
+                required
+              />
+            </div>
+            <button type="submit" class="btn btn-success">Submit</button>
+          </form>
+        </main>
+      </div>
+    </div>
+
+    <!-- JS Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      window.addEventListener("DOMContentLoaded", (event) => {
+        document
+          .getElementById("addVoucherForm")
+          .addEventListener("submit", function (event) {
+            alert("Voucher đã được thêm thành công!"); // Hiển thị thông báo thành công
+            location.reload(); // Reload lại trang
+          });
+      });
+    </script>
+  </body>
+</html>
