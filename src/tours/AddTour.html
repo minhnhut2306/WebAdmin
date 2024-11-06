@@ -112,7 +112,7 @@
             <main class="content px-3 py-2">
                 <!-- Form -->
                 <div class="container mb-4">
-                    <form>
+                    <form id="form">
                         <div class="mb-3">
                             <label for="tourName" class="form-label">Tour name:</label>
                             <input type="text" class="form-control" id="tourName" name="tourName">
@@ -126,6 +126,23 @@
                             <select class="form-select" id="selectCate" aria-label="Default select example">
 
                             </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="departure" class="form-label">departure:</label>
+                            <input type="text" class="form-control" id="departure" name="departure">
+                        </div>
+                        <div class="mb-3">
+                            <label for="destination" class="form-label">destination:</label>
+                            <input type="text" class="form-control" id="destination" name="destination">
+                        </div>
+                        <div class="mb-3">
+                            <label for="linkImage" class="form-label">linkImage:</label>
+                            <button type="button" class="btn btn-danger" onclick="themHinh()">Thêm
+                                hình</button>
+                            <input type="text" class="form-control" id="linkImage" name="linkImage">
+                        </div>
+                        <div class="mb-3" id="addInput">
+
                         </div>
                         <button type="button" class="btn btn-primary" onclick="addTour()">Submit</button>
                     </form>
@@ -170,11 +187,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../../js/script.js"></script>
     <script>
+
+        // selection Category
         var str = '<option value="">Null<option/>';
         let response = fetch('https://trip-aura-server-git-main-minhnhut2306s-projects.vercel.app/category/api/getCategory')
             .then(response => response.json())
             .then(category => {
-                console.log(category.data);
+                console.log("===== category ", category.data);
                 category.data.forEach(item => {
                     str += `<option value="${item._id}">${item.name}<option/>`;
                 })
@@ -184,10 +203,16 @@
                 console.log(error);
             })
 
-        const addTour = () => {
+        // add tour
+        const addTour = async () => {
             const tourName = document.getElementById('tourName').value;
             const description = document.getElementById('description').value;
             const category = document.getElementById('selectCate').value;
+            const destination = document.getElementById('destination').value;
+            const departure = document.getElementById('departure').value;
+            const linkImge = document.getElementById('linkImage').value
+            console.log("====== linkImage", linkImge);
+
 
             console.log({ tourName, description, category });
 
@@ -195,7 +220,7 @@
                 alert("Bạn cần nhập đầy đủ thông tin");
             } else {
                 try {
-                    let response = fetch('https://trip-aura-server-git-main-minhnhut2306s-projects.vercel.app/tour/api/add', {
+                    let response = await fetch('https://trip-aura-server-git-main-minhnhut2306s-projects.vercel.app/tour/api/add', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
@@ -206,18 +231,73 @@
                             category: category,
                         })
                     }).then(response => response.json())
-                    console.log("res", response);
-                    if (response.data.status == "success") {
-                        alert('Thêm sản phẩm thành công');
+                    console.log("res", response.data);
+                    localStorage.setItem("tourId", response.data._id)
+                    if (response.status == "success") {
+                        await addLocation(departure, destination, localStorage.getItem('tourId'))
+                        await addImage(linkImge, localStorage.getItem('tourId'))
+                        alert("Thêm tour thành công")
                     } else {
                         alert('Thêm sản phẩm thất bại');
                     }
                 } catch (error) {
                     console.log('loi', error);
                 }
-            }
 
+
+            }
         }
+        // thêm input nhập link ảnh
+        let strLinkImage = ``;
+        const themHinh = () => {
+            let i = 0
+            strLinkImage += `<input type="text" class="form-control" id="linkImage" name="linkImage">`
+            document.getElementById("addInput").innerHTML = strLinkImage
+        }
+
+        // add location
+        var addLocation = async (departure, destination, tourId) => {
+            try {
+                const location = await fetch("https://trip-aura-server-git-main-minhnhut2306s-projects.vercel.app/location/api/add", {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        departure: departure,
+                        destination: destination,
+                        tourId: tourId
+                    })
+                }).then(location => location.json())
+                console.log(location);
+
+            } catch (error) {
+                console.log('loi add location', error);
+                return false
+            }
+        }
+
+
+        //add image
+        const addImage = async (linkImage, tourId) => {
+            try {
+                const image = await fetch('https://trip-aura-server-git-main-minhnhut2306s-projects.vercel.app/image/api/add', {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        linkImage: linkImage,
+                        tourId: tourId
+                    })
+                }).then(image => image.json())
+
+            } catch (error) {
+                console.log('loi add image', error);
+                return false
+            }
+        }
+
     </script>
 </body>
 

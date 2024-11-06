@@ -129,33 +129,7 @@
                                     </tr>
                                 </thead>
                                 <tbody id="listProduct">
-                                    <script>
-                                        var str = '';
-                                        let response = fetch('https://trip-aura-server-git-main-minhnhut2306s-projects.vercel.app/tour/api/getAll')
-                                            .then(response => response.json())
-                                            .then(tour => {
-                                                console.log(tour.data);
-                                                tour.data.forEach(item => {
-                                                    // Fetch category name based on category ID
-                                                    str += `<tr>
-                                                                <td>${item.tourName}</td>
-                                                                <td><img src="${item.imageInfo.linkImage[0]}" class="avatar img-fluid rounded"/></td>
-                                                                <td class="d-flex gap-4">
-                                                                </td>
-                                                                <td></td>
-                                                                <td>
-                                                                    <button type="button" class="btn btn-danger" onclick="deleteProduct('${item._id}')">Xóa</button>
-                                                                    <button type="button" class="btn btn-primary" onclick="updateProduct('${item._id}')">Chỉnh sửa</button>
-                                                                </td>
-                                                            </tr>`;
-                                                    document.getElementById("listProduct").innerHTML = str;
 
-                                                });
-                                            })
-                                            .catch(error => {
-                                                console.log(error);
-                                            });
-                                    </script>
 
                                 </tbody>
                             </table>
@@ -201,6 +175,60 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../../js/script.js"></script>
+    <script>
+        var str = '';
+        const response = fetch('https://trip-aura-server-git-main-minhnhut2306s-projects.vercel.app/tour/api/getAll')
+            .then(response => response.json())
+            .then(tour => {
+                console.log(tour.data);
+                tour.data.forEach(item => {
+                    // Fetch category name based on category ID
+                    str += `<tr>
+                                <td>${item.tourName}</td>
+                                <td id="anh"><img src="${item.imageInfo.linkImage[0]}" class="avatar img-fluid rounded"/></td>
+                                <td class="d-flex gap-4">
+                                </td>
+                                <td> <a class="btn btn-primary" href ="./OptionTour.html" onclick="optionTour('${item._id}')">Option tour</a></td>
+                                <td>
+                                    <button type="button" class="btn btn-danger" onclick="deleteTour('${"67297c225900b4a702af37e1"}')">Xóa</button>
+                                    <button type="button" class="btn btn-primary" onclick="updateTour('${item._id}')">Update</button>
+                                   
+                                </td>
+                            </tr>`;
+                    document.getElementById("listProduct").innerHTML = str;
+
+                });
+            })
+            .catch(error => {
+                console.log(error);
+            });
+
+        const deleteTour = async (tourId) => {
+            try {
+                console.log(tourId);
+                const res = await fetch(`https://trip-aura-server-git-main-minhnhut2306s-projects.vercel.app/tour/api/deleteTour/${tourId}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                })
+                    .then(res => res.json())
+                if (res.code == 200) {
+                    alert("Xóa tour thành công")
+                } else {
+                    alert("Xóa tour thất bại")
+                }
+            } catch (error) {
+                alert('Lỗi xóa tour')
+                console.log("==== Lỗi xóa tour", error);
+
+            }
+        }
+
+        const optionTour = (tourId) => {
+            localStorage.setItem("tourIdOption", tourId)
+        }
+    </script>
 </body>
 
 </html>
