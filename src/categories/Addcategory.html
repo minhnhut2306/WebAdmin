@@ -134,28 +134,7 @@
                             <div class="mb-3">
                                 <label for="username" class="form-label">Category name:</label>
                                 <input type="text" class="form-control" id="username" name="username">
-                            </div>
-                            <div class="mb-3">
-                                <label for="selectExample" class="form-label">Category parent:</label>
-                                <select class="form-select" id="selectCate" aria-label="Default select example">
-                                    <script>
-                                        var str = '<option value="">Null<option/>';
-                                        let response = fetch('http://localhost:3000/category/api/getParent')
-                                            .then(response => response.json())
-                                            .then(data => {
-                                                console.log(data);
-                                                data.forEach(item => {
-                                                    str += `<option value="${item._id}">${item.name}<option/>`;
-                                                })
-                                                document.getElementById("selectCate").innerHTML = str;
-
-                                            })
-                                            .catch(error => {
-                                                console.log(error);
-                                            })
-                                    </script>
-                                </select>
-                            </div>
+                            </div>                        
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </form>
                     </div>
