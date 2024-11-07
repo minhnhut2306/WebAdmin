@@ -90,6 +90,20 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="sidebar-item">
+                        <a href="#" class="sidebar-link collapsed" data-bs-target="#users" data-bs-toggle="collapse"
+                            aria-expanded="false">
+                            <i class="fa-solid fa-sliders pe-2"></i> Users
+                        </a>
+                        <ul id="users" class="sidebar-dropdown list-unstyled collapse">
+                            <li class="sidebar-item">
+                                <a href="../users/ListUser.html" class="sidebar-link">List Users</a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="../VoucherType/AddVoucherType.html" class="sidebar-link">Add VoucherType</a>
+                            </li>
+                        </ul>
+                    </li>
                     <li class="sidebar-header">
                         Multi Level Menu
                     </li>
@@ -150,9 +164,9 @@
                                     <tr>
                                         <th style="width: 20%;">Tên</th>
                                         <th style="width: 20%;">Hình ảnh</th>
-                                        <th style="width: 20%;">Mo tả</th>
-                                        <th style="width: 20%;">Option</th>
-                                        <th style="width: 20%;"></th>
+                                        <th style="width: 20%;">Email</th>
+                                        <th style="width: 20%;">Số điện thoại</th>
+                                        <th style="width: 20%;">Ngày tạo</th>
                                     </tr>
                                 </thead>
                                 <tbody id="listProduct">
@@ -224,24 +238,25 @@
     <script src="../../js/script.js"></script>
     <script>
         var str = '';
-        const response = fetch('https://trip-aura-server-git-main-minhnhut2306s-projects.vercel.app/tour/api/getAll')
+        const response = fetch('https://trip-aura-server-git-main-minhnhut2306s-projects.vercel.app/auth/api/getAll')
             .then(response => response.json())
             .then(tour => {
                 console.log(tour.data);
                 tour.data.forEach(item => {
                     // Fetch category name based on category ID
                     str += `<tr>
-                                <td>${item.tourName}</td>
-                                <td id="anh"><img src="${item.imageInfo.linkImage[0]}" class="avatar img-fluid rounded"/></td>
+                                <td>${item.fullname}</td>
+                                <td id="anh"><img src="${item.avatar}" class="avatar img-fluid rounded"/></td>
                                 <td class="d-flex gap-4">
-                                    <div style="white-space: nowrap;   width: 400px;  overflow: hidden;  text-overflow: ellipsis;">${item.description}</div>
+                                    <div style="white-space: nowrap;   width: 400px;  overflow: hidden;  text-overflow: ellipsis;">${item.email}</div>
                                 </td>
-                                <td> <a class="btn btn-primary" href ="./OptionTour.html" onclick="optionTour('${item._id}')">Option tour</a></td>
                                 <td>
-                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDelete" onclick="getTourId('${item._id}')">Xóa</button>
-                                    <button type="button" class="btn btn-primary" onclick="updateTour('${item._id}')">Update</button>
-                                   
+                                    <p>${item.phone}</p>
                                 </td>
+                                <td> 
+                                    <p>${item.created_at}</p>
+                                </td>
+                                
                             </tr>`;
                     document.getElementById("listProduct").innerHTML = str;
 
