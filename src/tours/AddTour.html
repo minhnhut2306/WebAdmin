@@ -24,11 +24,26 @@
                         Admin Elements
                     </li>
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
+                        <a href="../../index.html" class="sidebar-link">
                             <i class="fa-solid fa-list pe-2"></i>
                             Dashboard
                         </a>
                     </li>
+                    <li class="sidebar-item">
+                        <a href="#" class="sidebar-link collapsed" data-bs-target="#pages" data-bs-toggle="collapse"
+                            aria-expanded="false"><i class="fa-solid fa-file-lines pe-2"></i>
+                            Category
+                        </a>
+                        <ul id="pages" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                            <li class="sidebar-item">
+                                <a href="../categories/Listcategory.html" class="sidebar-link">List Category</a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="../categories/Addcategory.html" class="sidebar-link">Add Category</a>
+                            </li>
+                        </ul>
+                    </li>
+
                     <li class="sidebar-item">
                         <a href="#" class="sidebar-link collapsed" data-bs-target="#posts" data-bs-toggle="collapse"
                             aria-expanded="false"><i class="fa-solid fa-sliders pe-2"></i>
@@ -47,22 +62,35 @@
                         </ul>
                     </li>
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link collapsed" data-bs-target="#auth" data-bs-toggle="collapse"
-                            aria-expanded="false"><i class="fa-regular fa-user pe-2"></i>
-                            Bill
+                        <a href="#" class="sidebar-link collapsed" data-bs-target="#voucherType"
+                            data-bs-toggle="collapse" aria-expanded="false">
+                            <i class="fa-solid fa-sliders pe-2"></i> Voucher Type
                         </a>
-                        <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                        <ul id="voucherType" class="sidebar-dropdown list-unstyled collapse">
                             <li class="sidebar-item">
-                                <a href="#" class="sidebar-link">Add Bill</a>
+                                <a href="../VoucherType/ListVoucherType.html" class="sidebar-link">List VoucherType</a>
                             </li>
                             <li class="sidebar-item">
-                                <a href="./ListBill.html" class="sidebar-link">List Bill</a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a href="#" class="sidebar-link">Delete</a>
+                                <a href="../VoucherType/AddVoucherType.html" class="sidebar-link">Add VoucherType</a>
                             </li>
                         </ul>
                     </li>
+
+                    <li class="sidebar-item">
+                        <a href="#" class="sidebar-link collapsed" data-bs-target="#voucher" data-bs-toggle="collapse"
+                            aria-expanded="false"><i class="fa-regular fa-user pe-2"></i>
+                            Voucher
+                        </a>
+                        <ul id="voucher" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                            <li class="sidebar-item">
+                                <a href="../Voucher/AddVoucher.html" class="sidebar-link">Add Voucher</a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="../Voucher/ListVoucher.html" class="sidebar-link">List Voucher</a>
+                            </li>
+                        </ul>
+                    </li>
+
                     <li class="sidebar-header">
                         Multi Level Menu
                     </li>
