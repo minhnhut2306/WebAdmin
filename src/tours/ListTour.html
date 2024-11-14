@@ -24,11 +24,26 @@
                         Admin Elements
                     </li>
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
+                        <a href="../../index.html" class="sidebar-link">
                             <i class="fa-solid fa-list pe-2"></i>
                             Dashboard
                         </a>
                     </li>
+                    <li class="sidebar-item">
+                        <a href="#" class="sidebar-link collapsed" data-bs-target="#pages" data-bs-toggle="collapse"
+                            aria-expanded="false"><i class="fa-solid fa-file-lines pe-2"></i>
+                            Category
+                        </a>
+                        <ul id="pages" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                            <li class="sidebar-item">
+                                <a href="../categories/Listcategory.html" class="sidebar-link">List Category</a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="../categories/Addcategory.html" class="sidebar-link">Add Category</a>
+                            </li>
+                        </ul>
+                    </li>
+
                     <li class="sidebar-item">
                         <a href="#" class="sidebar-link collapsed" data-bs-target="#posts" data-bs-toggle="collapse"
                             aria-expanded="false"><i class="fa-solid fa-sliders pe-2"></i>
@@ -47,19 +62,31 @@
                         </ul>
                     </li>
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link collapsed" data-bs-target="#auth" data-bs-toggle="collapse"
-                            aria-expanded="false"><i class="fa-regular fa-user pe-2"></i>
-                            Bill
+                        <a href="#" class="sidebar-link collapsed" data-bs-target="#voucherType"
+                            data-bs-toggle="collapse" aria-expanded="false">
+                            <i class="fa-solid fa-sliders pe-2"></i> Voucher Type
                         </a>
-                        <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                        <ul id="voucherType" class="sidebar-dropdown list-unstyled collapse">
                             <li class="sidebar-item">
-                                <a href="#" class="sidebar-link">Add Bill</a>
+                                <a href="../VoucherType/ListVoucherType.html" class="sidebar-link">List VoucherType</a>
                             </li>
                             <li class="sidebar-item">
-                                <a href="./ListBill.html" class="sidebar-link">List Bill</a>
+                                <a href="../VoucherType/AddVoucherType.html" class="sidebar-link">Add VoucherType</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="sidebar-item">
+                        <a href="#" class="sidebar-link collapsed" data-bs-target="#voucher" data-bs-toggle="collapse"
+                            aria-expanded="false"><i class="fa-regular fa-user pe-2"></i>
+                            Voucher
+                        </a>
+                        <ul id="voucher" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                            <li class="sidebar-item">
+                                <a href="../Voucher/AddVoucher.html" class="sidebar-link">Add Voucher</a>
                             </li>
                             <li class="sidebar-item">
-                                <a href="#" class="sidebar-link">Delete</a>
+                                <a href="../Voucher/ListVoucher.html" class="sidebar-link">List Voucher</a>
                             </li>
                         </ul>
                     </li>
@@ -121,10 +148,10 @@
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th style="width: 20%;">Tour name</th>
-                                        <th style="width: 20%;">Image</th>
-                                        <th style="width: 20%;">Category</th>
-                                        <th style="width: 20%;">Price(VND)</th>
+                                        <th style="width: 20%;">Tên</th>
+                                        <th style="width: 20%;">Hình ảnh</th>
+                                        <th style="width: 20%;">Mo tả</th>
+                                        <th style="width: 20%;">Option</th>
                                         <th style="width: 20%;"></th>
                                     </tr>
                                 </thead>
@@ -138,6 +165,26 @@
 
                 </div>
             </main>
+            <!-- Modal xóa -->
+            <div class="modal fade" id="modalDelete" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title btn-danger" id="exampleModalLabel">Delete Option</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Bạn có chắc muốn xóa không?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Không</button>
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+                                onclick="deleteTour(tourId)">Xóa</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <a href="#" class="theme-toggle">
                 <i class="fa-regular fa-moon"></i>
                 <i class="fa-regular fa-sun"></i>
@@ -187,10 +234,11 @@
                                 <td>${item.tourName}</td>
                                 <td id="anh"><img src="${item.imageInfo.linkImage[0]}" class="avatar img-fluid rounded"/></td>
                                 <td class="d-flex gap-4">
+                                    <div style="white-space: nowrap;   width: 400px;  overflow: hidden;  text-overflow: ellipsis;">${item.description}</div>
                                 </td>
                                 <td> <a class="btn btn-primary" href ="./OptionTour.html" onclick="optionTour('${item._id}')">Option tour</a></td>
                                 <td>
-                                    <button type="button" class="btn btn-danger" onclick="deleteTour('${"67297c225900b4a702af37e1"}')">Xóa</button>
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDelete" onclick="getTourId('${item._id}')">Xóa</button>
                                     <button type="button" class="btn btn-primary" onclick="updateTour('${item._id}')">Update</button>
                                    
                                 </td>
@@ -215,6 +263,7 @@
                     .then(res => res.json())
                 if (res.code == 200) {
                     alert("Xóa tour thành công")
+                    location.reload()
                 } else {
                     alert("Xóa tour thất bại")
                 }
@@ -223,6 +272,10 @@
                 console.log("==== Lỗi xóa tour", error);
 
             }
+        }
+        var tourId;
+        const getTourId = (_id) => {
+            tourId = _id;
         }
 
         const optionTour = (tourId) => {
