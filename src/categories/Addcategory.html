@@ -151,74 +151,19 @@
                     </div>
                     <!-- Form -->
                     <div class="container mb-4">
-                        <form action="/action_page.php">
+                        <form id="categoryForm">
                             <div class="mb-3">
-                                <label for="username" class="form-label">Category name:</label>
-                                <input type="text" class="form-control" id="username" name="username">
+                                <label for="name" class="form-label">Category name:</label>
+                                <input type="text" class="form-control" id="name" name="name">
                             </div>
                             <div class="mb-3">
-                                <label for="selectExample" class="form-label">Category parent:</label>
-                                <select class="form-select" id="selectCate" aria-label="Default select example">
-                                    <script>
-                                        var str = '<option value="">Null<option/>';
-                                        let response = fetch('http://localhost:3000/category/api/getParent')
-                                            .then(response => response.json())
-                                            .then(data => {
-                                                console.log(data);
-                                                data.forEach(item => {
-                                                    str += `<option value="${item._id}">${item.name}<option/>`;
-                                                })
-                                                document.getElementById("selectCate").innerHTML = str;
-
-                                            })
-                                            .catch(error => {
-                                                console.log(error);
-                                            })
-                                    </script>
-                                </select>
+                                <label for="linkImage" class="form-label">Image</label>
+                                <input type="text" class="form-control" id="linkImage" name="linkImage">
                             </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" id="submit" class="btn btn-primary">Submit</button>
                         </form>
                     </div>
-
-                    <!-- Table Element -->
-                    <!-- <div class="card border-0 mb-4">
-                        <div class="card-header">
-                            <h5 class="card-title">
-                                List Category
-                            </h5>
-                        </div>
-                        <div class="container mt-3">
-                            <table class="table table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>Firstname</th>
-                                        <th>Lastname</th>
-                                        <th>Email</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>John</td>
-                                        <td>Doe</td>
-                                        <td>john@example.com</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Mary</td>
-                                        <td>Moe</td>
-                                        <td>mary@example.com</td>
-                                    </tr>
-                                    <tr>
-                                        <td>July</td>
-                                        <td>Dooley</td>
-                                        <td>july@example.com</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div> -->
                 </div>
-
             </main>
             <a href="#" class="theme-toggle">
                 <i class="fa-regular fa-moon"></i>
@@ -257,6 +202,52 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../../js/script.js"></script>
+    <script>
+        const submit = document.getElementById("submit");
+        submit.addEventListener("click", async function (e) {
+            e.preventDefault();
+
+            const categoryName = document.getElementById("name").value;
+            const imageLink = document.getElementById("linkImage").value;
+
+            // Kiểm tra nếu không đủ thông tin
+            if (!categoryName || !imageLink) {
+                alert("Vui lòng nhập đủ thông tin.");
+                return;
+            }
+
+            try {
+                const response = await fetch(`https://trip-aura-server.vercel.app/category/api/add`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        name: categoryName,  
+                        icon: imageLink     
+                    })
+                });
+                if (!response.ok) {
+                    throw new Error('Failed');
+                }
+
+                const data = await response.json();
+                console.log('data', data);
+
+                if (data.status === 200) {
+                    alert("Thêm danh mục thành công!");
+                    location.reload(); 
+                } else {
+                    alert(data.message || "Có lỗi xảy ra. Vui lòng thử lại sau.");
+                }
+
+            } catch (error) {
+                console.error('Lỗi khi thêm danh mục:', error);
+                alert("Thêm danh mục không thành công. Vui lòng thử lại sau.");
+            }
+        });
+
+    </script>
 </body>
 
 </html>
