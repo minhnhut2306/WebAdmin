@@ -90,6 +90,17 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="sidebar-item">
+                        <a href="#" class="sidebar-link collapsed" data-bs-target="#users" data-bs-toggle="collapse"
+                            aria-expanded="false">
+                            <i class="fa-solid fa-sliders pe-2"></i> Users
+                        </a>
+                        <ul id="users" class="sidebar-dropdown list-unstyled collapse">
+                            <li class="sidebar-item">
+                                <a href="../users/ListUser.html" class="sidebar-link">List Users</a>
+                            </li>
+                        </ul>
+                    </li>
                     <li class="sidebar-header">
                         Multi Level Menu
                     </li>
@@ -139,6 +150,7 @@
             <!-- code -->
             <main class="content px-3 py-2">
                 <div class="container-fluid row">
+
                     <div id="tourName" class="col-sm-10">
                     </div>
                     <div class="col-sm">
@@ -216,7 +228,8 @@
                         <!-- Modal -->
                     </div>
                 </div>
-
+                <h4>Mô tả</h4>
+                <div class="col-sm" id="description" style="padding-left: 20px;padding-right: 20px  ;"></div>
                 <div class="row" id="anhNe">
                 </div>
                 <div id="chiTiet" class="row" style="margin-top: 50px;">
@@ -416,6 +429,7 @@
                     });
                     document.getElementById('anhNe').innerHTML = strImage
                     document.getElementById('tourName').innerHTML = `<h2>${image.data[0].tourName}</h2>`
+                    document.getElementById('description').innerHTML = `<p>${image.data[0].description}</p>`
                     document.getElementById('chiTiet').innerHTML = strDetail
                 }).catch(error => {
                     console.log(error);
@@ -457,10 +471,7 @@
 
             console.log(startDay, endDay, maxTicket, minTicket, priceAdult, priceChildren, promotionalPrice, tourId);
             try {
-                if (!startDay || !endDay || !maxTicket || !minTicket || !priceAdult || !priceChildren || !promotionalPrice || !tourId) {
-                    alert('Bạn cần nhập đầy đủ thông tin')
-                    return
-                } else {
+                if (validateFormOptionTour(startDay, endDay, maxTicket, minTicket, priceAdult, priceChildren, promotionalPrice, tourId)) {
                     const data = {
                         startDay,
                         endDay,
@@ -495,6 +506,7 @@
                         alert('Thêm thất bại')
                     }
                 }
+
             } catch (error) {
                 console.log(error);
             }
@@ -553,6 +565,7 @@
                 const priceChildren = document.getElementById('priceChildrenUpdate').value
                 const promotionalPrice = document.getElementById('promotionalPriceUpdate').value
                 const status = 1
+
                 const option = await fetch(`https://trip-aura-server-git-main-minhnhut2306s-projects.vercel.app/detail/api/update/${optionId}`, {
                     method: 'PUT',
                     headers: {
@@ -580,6 +593,24 @@
                 console.log("===== lỗi updateOption", error);
 
             }
+        }
+
+        function validateFormOptionTour(startDay, endDay, maxTicket, minTicket, priceAdult, priceChildren, promotionalPrice, tourId) {
+            const validate = true
+            if (!startDay || !endDay || !maxTicket || !minTicket || !priceAdult || !priceChildren || !promotionalPrice || !tourId) {
+                alert('Bạn cần nhập đầy đủ thông tin')
+                validate = false
+            }
+            if (startDay > endDay) {
+                alert('Ngày kết thúc phải sau ngày bắt đầu')
+                validate = false
+            } if (maxTicket < minTicket) {
+                alert('Vé max phải lớn hơn vé min')
+                validate = false
+            }
+
+            return validate
+
         }
 
     </script>
