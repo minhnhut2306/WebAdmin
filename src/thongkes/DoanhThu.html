@@ -157,8 +157,13 @@
                 <select class="form-select" aria-label="Chọn năm" id="yearSelect">
                 </select>
 
-                <div class="col-md-8">
-                    <canvas id="barChart"></canvas>
+                <div class="col-md-10">
+                    <canvas id="revenueChart"></canvas>
+                    <h3>Doanh thu</h3>
+                </div>
+                <div class="col-md-10">
+                    <canvas id="ticketsChart"></canvas>
+                    <h3>Số vé</h3>
                 </div>
 
             </main>
@@ -221,9 +226,10 @@
     select.value = currentYear;
 
     let revenueByMonth = {};
+    let ticketsSoldByMonth = {};
 
-    // Cấu hình ban đầu cho biểu đồ
-    const data = {
+    // Cấu hình ban đầu cho biểu đồ doanh thu
+    const revenueData = {
         labels: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6',
             'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'],
         datasets: [{
@@ -248,9 +254,23 @@
         }]
     };
 
-    const config = {
+    // Cấu hình ban đầu cho biểu đồ số vé bán
+    const ticketsData = {
+        labels: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6',
+            'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'],
+        datasets: [{
+            label: 'Số vé bán',
+            data: Array(12).fill(0), // Mặc định 0 cho tất cả các tháng
+            backgroundColor: 'rgba(0, 123, 255, 0.5)',
+            borderColor: 'rgba(0, 123, 255, 1)',
+            borderWidth: 1
+        }]
+    };
+
+    // Cấu hình biểu đồ doanh thu
+    const revenueConfig = {
         type: 'bar',
-        data: data,
+        data: revenueData,
         options: {
             scales: {
                 y: {
@@ -260,8 +280,26 @@
         }
     };
 
-    const ctx = document.getElementById('barChart').getContext('2d');
-    const barChart = new Chart(ctx, config);
+    // Cấu hình biểu đồ số vé bán
+    const ticketsConfig = {
+        type: 'bar',
+        data: ticketsData,
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    };
+
+    // Khởi tạo biểu đồ doanh thu
+    const ctxRevenue = document.getElementById('revenueChart').getContext('2d');
+    const revenueChart = new Chart(ctxRevenue, revenueConfig);
+
+    // Khởi tạo biểu đồ số vé bán
+    const ctxTickets = document.getElementById('ticketsChart').getContext('2d');
+    const ticketsChart = new Chart(ctxTickets, ticketsConfig);
 
     // Hàm lấy dữ liệu doanh thu theo năm
     const getByYear = async (year) => {
@@ -270,42 +308,56 @@
             const booking = await response.json();
             console.log("Dữ liệu doanh thu:", booking.data);
 
-            // Khởi tạo doanh thu cho 12 tháng
+            // Khởi tạo doanh thu và số vé bán cho 12 tháng
             revenueByMonth = {};
+            ticketsSoldByMonth = {};
             for (let month = 1; month <= 12; month++) {
                 const key = `${month < 10 ? '0' : ''}${month}`;
                 revenueByMonth[key] = 0;
+                ticketsSoldByMonth[key] = 0;
             }
 
-            // Tính toán doanh thu theo tháng
+            // Tính toán doanh thu và số vé bán theo tháng
             booking.data.forEach(item => {
                 const date = new Date(item.createAt);
                 const month = date.getMonth() + 1; // Tháng
                 const key = `${month < 10 ? '0' : ''}${month}`;
+
+                // Cộng dồn doanh thu
                 revenueByMonth[key] += item.totalPrice;
+
+                // Cộng dồn số vé bán
+                ticketsSoldByMonth[key] += item.numAdult + item.numChildren;
             });
 
-            // Đảm bảo doanh thu được lấy theo thứ tự tháng 1 -> 12
+            // Đảm bảo doanh thu và số vé bán được lấy theo thứ tự tháng 1 -> 12
             const revenueValues = [];
+            const ticketsSoldValues = [];
             for (let month = 1; month <= 12; month++) {
                 const key = `${month < 10 ? '0' : ''}${month}`;
                 revenueValues.push(revenueByMonth[key]);
+                ticketsSoldValues.push(ticketsSoldByMonth[key]);
             }
-            console.log("Doanh thu theo tháng (giá trị):", revenueValues);
 
-            // Cập nhật biểu đồ
-            updateChart(revenueValues);
+            console.log("Doanh thu theo tháng (giá trị):", revenueValues);
+            console.log("Số vé bán theo tháng:", ticketsSoldValues);
+
+            // Cập nhật biểu đồ doanh thu
+            updateChart(revenueChart, revenueValues);
+
+            // Cập nhật biểu đồ số vé bán
+            updateChart(ticketsChart, ticketsSoldValues);
 
         } catch (error) {
             console.error("Lỗi khi lấy dữ liệu:", error);
         }
     };
-    
 
     // Hàm cập nhật biểu đồ
-    const updateChart = (revenueValues) => {
-        barChart.data.datasets[0].data = revenueValues;
-        barChart.update(); // Cập nhật biểu đồ
+    const updateChart = (chart, dataValues) => {
+        // Cập nhật dữ liệu biểu đồ với các giá trị
+        chart.data.datasets[0].data = dataValues;
+        chart.update(); // Cập nhật biểu đồ
     };
 
     // Xử lý khi thay đổi năm
@@ -315,7 +367,8 @@
         console.log(`Năm được chọn: ${selectedYear}`);
         getByYear(selectedYear);
     });
-</script>
+
+
 </script>
 
 </html>
