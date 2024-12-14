@@ -182,6 +182,10 @@
                             <input type="text" class="form-control" id="destination" name="destination">
                         </div>
                         <div class="mb-3">
+                            <label for="province" class="form-label">Tỉnh:</label>
+                            <input type="text" class="form-control" id="province" name="province">
+                        </div>
+                        <div class="mb-3">
                             <label for="linkImage" class="form-label">linkImage:</label>
                             <button type="button" class="btn btn-danger" onclick="themLinkHinh()">Thêm
                                 hình</button>
@@ -329,13 +333,14 @@
         const category = document.getElementById('selectCate').value;
         const destination = document.getElementById('destination').value;
         const departure = document.getElementById('departure').value;
+        const province = document.getElementById('province').value;
         const linkImge = document.getElementById('linkImage').value
         console.log("====== linkImage", description);
 
 
         console.log({ tourName, description, category });
 
-        if (tourName == "" || description == "" || category == "") {
+        if (tourName == "" || description == "" || category == "" || province == "") {
             alert("Bạn cần nhập đầy đủ thông tin");
         } else {
             try {
@@ -353,7 +358,7 @@
                 console.log("res", response.data);
                 localStorage.setItem("tourId", response.data._id)
                 if (response.status == "success") {
-                    await addLocation(departure, destination, localStorage.getItem('tourId'))
+                    await addLocation(departure, destination, province, localStorage.getItem('tourId'))
                     await addImage(linkImge, localStorage.getItem('tourId'))
                     alert("Thêm tour thành công")
                     editorInstance.setData('');
