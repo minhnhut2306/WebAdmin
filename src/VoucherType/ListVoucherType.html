@@ -1,197 +1,295 @@
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Voucher Type List</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css"
+    />
+    <script
+      src="https://kit.fontawesome.com/ae360af17e.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="../../css/style.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Voucher Type List</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" />
-  <script src="https://kit.fontawesome.com/ae360af17e.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="../../css/style.css" />
-</head>
-
-<body>
-  <div class="wrapper">
-    <!-- Sidebar -->
-    <aside id="sidebar" class="js-sidebar">
-      <div class="h-100">
-        <div class="sidebar-logo">
-          <a href="#">CodzSword</a>
-        </div>
-        <ul class="sidebar-nav">
-          <li class="sidebar-header">Admin Elements</li>
-          <li class="sidebar-item">
-            <a href="../../index.html" class="sidebar-link">
-              <i class="fa-solid fa-list pe-2"></i> Dashboard
-            </a>
-          </li>
-          <li class="sidebar-item">
-            <a href="#" class="sidebar-link collapsed" data-bs-target="#thongke" data-bs-toggle="collapse"
-                aria-expanded="false"><i class="fa-solid fa-file-lines pe-2"></i>
-                Thống kê
-            </a>
-            <ul id="thongke" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                <li class="sidebar-item">
-                    <a href="../thongkes/DoanhThu.html" class="sidebar-link">Doanh thu</a>
-                </li>
-            </ul>
-        </li>
-          <li class="sidebar-item">
-            <a href="#" class="sidebar-link collapsed" data-bs-target="#pages" data-bs-toggle="collapse"
-              aria-expanded="false"><i class="fa-solid fa-file-lines pe-2"></i>
-              Category
-            </a>
-            <ul id="pages" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-              <li class="sidebar-item">
-                <a href="../categories/Listcategory.html" class="sidebar-link">List Category</a>
-              </li>
-              <li class="sidebar-item">
-                <a href="../categories/Addcategory.html" class="sidebar-link">Add Category</a>
-              </li>
-            </ul>
-          </li>
-          <li class="sidebar-item">
-            <a href="#" class="sidebar-link collapsed" data-bs-target="#tours" data-bs-toggle="collapse"
-              aria-expanded="false">
-              <i class="fa-solid fa-sliders pe-2"></i>Tours
-            </a>
-            <ul id="tours" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-              <li class="sidebar-item">
-                <a href="../tours/ListTour.html" class="sidebar-link">List Tours</a>
-              </li>
-              <li class="sidebar-item">
-                <a href="../tours/AddTour.html" class="sidebar-link">Add Tours</a>
-              </li>
-            </ul>
-          </li>
-          <li class="sidebar-item">
-            <a href="#" class="sidebar-link collapsed" data-bs-target="#voucherType" data-bs-toggle="collapse"
-              aria-expanded="false">
-              <i class="fa-solid fa-sliders pe-2"></i> Voucher Type
-            </a>
-            <ul id="voucherType" class="sidebar-dropdown list-unstyled collapse">
-              <li class="sidebar-item">
-                <a href="./ListVoucherType.html" class="sidebar-link">List VoucherType</a>
-              </li>
-              <li class="sidebar-item">
-                <a href="./AddVoucherType.html" class="sidebar-link">Add VoucherType</a>
-              </li>
-            </ul>
-          </li>
-          <li class="sidebar-item">
-            <a href="#" class="sidebar-link collapsed" data-bs-target="#vouchers" data-bs-toggle="collapse"
-              aria-expanded="false">
-              <i class="fa-solid fa-gift pe-2"></i>Vouchers
-            </a>
-            <ul id="vouchers" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-              <li class="sidebar-item">
-                <a href="../Voucher/AddVoucher.html" class="sidebar-link">Add Voucher</a>
-              </li>
-              <li class="sidebar-item">
-                <a href="../Voucher/ListVoucher.html" class="sidebar-link">List Vouchers</a>
-              </li>
-            </ul>
-          </li>
-          <li class="sidebar-item">
-            <a href="#" class="sidebar-link collapsed" data-bs-target="#users" data-bs-toggle="collapse"
-              aria-expanded="false">
-              <i class="fa-solid fa-sliders pe-2"></i> Users
-            </a>
-            <ul id="users" class="sidebar-dropdown list-unstyled collapse">
-              <li class="sidebar-item">
-                <a href="../users/ListUser.html" class="sidebar-link">List Users</a>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-    </aside>
-
-    <!-- Main Content -->
-    <div class="main">
-      <nav class="navbar navbar-expand px-3 border-bottom">
-        <button class="btn" id="sidebar-toggle" type="button">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="navbar-collapse navbar">
-          <ul class="navbar-nav">
-            <li class="nav-item dropdown">
-              <a href="#" data-bs-toggle="dropdown" class="nav-icon pe-md-0">
-                <img src="../../image/profile.jpg" class="avatar img-fluid rounded" alt="Profile Image" />
+  <body>
+    <div class="wrapper">
+      <!-- Sidebar -->
+      <aside id="sidebar" class="js-sidebar">
+        <div class="h-100">
+          <div class="sidebar-logo">
+            <a href="#">CodzSword</a>
+          </div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-header">Admin Elements</li>
+            <li class="sidebar-item">
+              <a href="../../index.html" class="sidebar-link">
+                <i class="fa-solid fa-list pe-2"></i> Dashboard
               </a>
-              <div class="dropdown-menu dropdown-menu-end">
-                <a href="#" class="dropdown-item">Profile</a>
-                <a href="#" class="dropdown-item">Settings</a>
-                <a href="./Login.html" class="dropdown-item">Logout</a>
-              </div>
+            </li>
+            <li class="sidebar-item">
+              <a
+                href="#"
+                class="sidebar-link collapsed"
+                data-bs-target="#thongke"
+                data-bs-toggle="collapse"
+                aria-expanded="false"
+                ><i class="fa-solid fa-file-lines pe-2"></i>
+                Thống kê
+              </a>
+              <ul
+                id="thongke"
+                class="sidebar-dropdown list-unstyled collapse"
+                data-bs-parent="#sidebar"
+              >
+                <li class="sidebar-item">
+                  <a href="../thongkes/DoanhThu.html" class="sidebar-link"
+                    >Doanh thu</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="sidebar-item">
+              <a
+                href="#"
+                class="sidebar-link collapsed"
+                data-bs-target="#pages"
+                data-bs-toggle="collapse"
+                aria-expanded="false"
+                ><i class="fa-solid fa-file-lines pe-2"></i>
+                Category
+              </a>
+              <ul
+                id="pages"
+                class="sidebar-dropdown list-unstyled collapse"
+                data-bs-parent="#sidebar"
+              >
+                <li class="sidebar-item">
+                  <a href="../categories/Listcategory.html" class="sidebar-link"
+                    >List Category</a
+                  >
+                </li>
+                <li class="sidebar-item">
+                  <a href="../categories/Addcategory.html" class="sidebar-link"
+                    >Add Category</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="sidebar-item">
+              <a
+                href="#"
+                class="sidebar-link collapsed"
+                data-bs-target="#tours"
+                data-bs-toggle="collapse"
+                aria-expanded="false"
+              >
+                <i class="fa-solid fa-sliders pe-2"></i>Tours
+              </a>
+              <ul
+                id="tours"
+                class="sidebar-dropdown list-unstyled collapse"
+                data-bs-parent="#sidebar"
+              >
+                <li class="sidebar-item">
+                  <a href="../tours/ListTour.html" class="sidebar-link"
+                    >List Tours</a
+                  >
+                </li>
+                <li class="sidebar-item">
+                  <a href="../tours/AddTour.html" class="sidebar-link"
+                    >Add Tours</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="sidebar-item">
+              <a
+                href="#"
+                class="sidebar-link collapsed"
+                data-bs-target="#voucherType"
+                data-bs-toggle="collapse"
+                aria-expanded="false"
+              >
+                <i class="fa-solid fa-sliders pe-2"></i> Voucher Type
+              </a>
+              <ul
+                id="voucherType"
+                class="sidebar-dropdown list-unstyled collapse"
+              >
+                <li class="sidebar-item">
+                  <a href="./ListVoucherType.html" class="sidebar-link"
+                    >List VoucherType</a
+                  >
+                </li>
+                <li class="sidebar-item">
+                  <a href="./AddVoucherType.html" class="sidebar-link"
+                    >Add VoucherType</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="sidebar-item">
+              <a
+                href="#"
+                class="sidebar-link collapsed"
+                data-bs-target="#vouchers"
+                data-bs-toggle="collapse"
+                aria-expanded="false"
+              >
+                <i class="fa-solid fa-gift pe-2"></i>Vouchers
+              </a>
+              <ul
+                id="vouchers"
+                class="sidebar-dropdown list-unstyled collapse"
+                data-bs-parent="#sidebar"
+              >
+                <li class="sidebar-item">
+                  <a href="../Voucher/AddVoucher.html" class="sidebar-link"
+                    >Add Voucher</a
+                  >
+                </li>
+                <li class="sidebar-item">
+                  <a href="../Voucher/ListVoucher.html" class="sidebar-link"
+                    >List Vouchers</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="sidebar-item">
+              <a
+                href="#"
+                class="sidebar-link collapsed"
+                data-bs-target="#users"
+                data-bs-toggle="collapse"
+                aria-expanded="false"
+              >
+                <i class="fa-solid fa-sliders pe-2"></i> Users
+              </a>
+              <ul id="users" class="sidebar-dropdown list-unstyled collapse">
+                <li class="sidebar-item">
+                  <a href="../users/ListUser.html" class="sidebar-link"
+                    >List Users</a
+                  >
+                </li>
+              </ul>
             </li>
           </ul>
         </div>
-      </nav>
+      </aside>
 
-      <!-- Content: Voucher Type List -->
-      <div class="container mt-5">
-        <h2>List of Voucher Types</h2>
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th style="width: 60%; text-align: center">
-                Voucher Type Name
-              </th>
-              <th style="width: 20%; text-align: center">Actions</th>
-            </tr>
-          </thead>
-          <tbody id="voucherTypeList">
-            <!-- Data will be populated here from the script -->
-          </tbody>
-        </table>
+      <!-- Main Content -->
+      <div class="main">
+        <nav class="navbar navbar-expand px-3 border-bottom">
+          <button class="btn" id="sidebar-toggle" type="button">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="navbar-collapse navbar">
+            <ul class="navbar-nav">
+              <li class="nav-item dropdown">
+                <a href="#" data-bs-toggle="dropdown" class="nav-icon pe-md-0">
+                  <img
+                    src="../../image/profile.jpg"
+                    class="avatar img-fluid rounded"
+                    alt="Profile Image"
+                  />
+                </a>
+                <div class="dropdown-menu dropdown-menu-end">
+                  <a href="#" class="dropdown-item">Profile</a>
+                  <a href="#" class="dropdown-item">Settings</a>
+                  <a href="./Login.html" class="dropdown-item">Logout</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+        <!-- Content: Voucher Type List -->
+        <div class="container mt-5">
+          <h2 style="text-align: center">List of Voucher Types</h2>
+          <table class="table table-light table-bordered custom-table-border">
+            <thead>
+              <tr>
+                <th style="width: 60%; text-align: center">
+                  Voucher Type Name
+                </th>
+                <th style="width: 20%; text-align: center">Actions</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+            <tbody id="voucherTypeList">
+              <!-- Data will be populated here from the script -->
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- Modal for editing voucher type -->
-  <div class="modal fade" id="editVoucherModal" tabindex="-1" aria-labelledby="editVoucherModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="editVoucherModalLabel">
-            Edit Voucher Type
-          </h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <label for="voucherName">Voucher Name</label>
-          <input type="text" id="voucherName" class="form-control" placeholder="Enter new voucher name" />
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-            Close
-          </button>
-          <button type="button" class="btn btn-primary" id="saveVoucherBtn">
-            Save Changes
-          </button>
+    <!-- Modal for editing voucher type -->
+    <div
+      class="modal fade"
+      id="editVoucherModal"
+      tabindex="-1"
+      aria-labelledby="editVoucherModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editVoucherModalLabel">
+              Edit Voucher Type
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <label for="voucherName">Voucher Name</label>
+            <input
+              type="text"
+              id="voucherName"
+              class="form-control"
+              placeholder="Enter new voucher name"
+            />
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-primary" id="saveVoucherBtn">
+              Save Changes
+            </button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <a href="#" class="theme-toggle">
-    <i class="fa-regular fa-moon"></i>
-    <i class="fa-regular fa-sun"></i>
-  </a>
+    <a href="#" class="theme-toggle">
+      <i class="fa-regular fa-moon"></i>
+      <i class="fa-regular fa-sun"></i>
+    </a>
 
-  <script>
-    // Fetch the voucher types data
-    fetch("https://trip-aura-server.vercel.app/voucherType/api/getAll")
-      .then((response) => response.json())
-      .then((data) => {
-        const voucherTypes = data.data; // Assuming the data structure has a 'data' array
-        let str = "";
+    <script>
+      // Fetch the voucher types data
+      fetch("https://trip-aura-server.vercel.app/voucherType/api/getAll")
+        .then((response) => response.json())
+        .then((data) => {
+          const voucherTypes = data.data; // Assuming the data structure has a 'data' array
+          let str = "";
 
-        // Loop through the data and create table rows
-        voucherTypes.forEach((item) => {
-          str += `
+          // Loop through the data and create table rows
+          voucherTypes.forEach((item) => {
+            str += `
         <tr data-id="${item.id}">
           <td style="text-align: center;">${item.name}</td>
           <td style="text-align: center;">
@@ -200,84 +298,83 @@
           </td>
         </tr>
       `;
-        });
+          });
 
-        // Inject the rows into the table
-        document.getElementById("voucherTypeList").innerHTML = str;
-      })
-      .catch((error) => {
-        console.error("Error fetching voucher types:", error);
-        alert("Error fetching voucher types. Please try again.");
-      });
-
-    // Function to open the edit modal and prefill the voucher name
-    function editVoucher(id, name) {
-      document.getElementById("voucherName").value = name;
-      document.getElementById("saveVoucherBtn").onclick = function () {
-        updateVoucher(id);
-      };
-      // Show the modal
-      new bootstrap.Modal(document.getElementById("editVoucherModal")).show();
-    }
-
-    // Function to update the voucher type
-    function updateVoucher(id) {
-      const updatedName = document.getElementById("voucherName").value;
-      const requestBody = { name: updatedName };
-
-      fetch(
-        `https://trip-aura-server.vercel.app/voucherType/api/update/${id}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(requestBody),
-        }
-      )
-        .then((response) => response.json())
-        .then((data) => {
-          if (data.success) {
-            alert("Voucher updated successfully!");
-            location.reload(); // Reload the page to reflect changes
-          } else {
-            alert("Failed to update voucher.");
-          }
+          // Inject the rows into the table
+          document.getElementById("voucherTypeList").innerHTML = str;
         })
         .catch((error) => {
-          console.error("Error updating voucher:", error);
-          alert("Error updating voucher. Please try again.");
+          console.error("Error fetching voucher types:", error);
+          alert("Error fetching voucher types. Please try again.");
         });
-    }
 
-    // Function to delete a voucher type
-    function deleteVoucher(id) {
-      if (confirm("Are you sure you want to delete this voucher?")) {
+      // Function to open the edit modal and prefill the voucher name
+      function editVoucher(id, name) {
+        document.getElementById("voucherName").value = name;
+        document.getElementById("saveVoucherBtn").onclick = function () {
+          updateVoucher(id);
+        };
+        // Show the modal
+        new bootstrap.Modal(document.getElementById("editVoucherModal")).show();
+      }
+
+      // Function to update the voucher type
+      function updateVoucher(id) {
+        const updatedName = document.getElementById("voucherName").value;
+        const requestBody = { name: updatedName };
+
         fetch(
-          `https://trip-aura-server.vercel.app/voucherType/api/delete/${id}`,
+          `https://trip-aura-server.vercel.app/voucherType/api/update/${id}`,
           {
-            method: "DELETE",
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(requestBody),
           }
         )
           .then((response) => response.json())
           .then((data) => {
             if (data.success) {
-              alert("Voucher deleted successfully!");
-              location.reload();
+              alert("Voucher updated successfully!");
+              location.reload(); // Reload the page to reflect changes
             } else {
-              alert("Failed to delete voucher.");
+              alert("Failed to update voucher.");
             }
           })
           .catch((error) => {
-            console.error("Error deleting voucher:", error);
-            alert("Error deleting voucher. Please try again.");
+            console.error("Error updating voucher:", error);
+            alert("Error updating voucher. Please try again.");
           });
       }
-    }
-  </script>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="../../js/script.js"></script>
-</body>
+      // Function to delete a voucher type
+      function deleteVoucher(id) {
+        if (confirm("Are you sure you want to delete this voucher?")) {
+          fetch(
+            `https://trip-aura-server.vercel.app/voucherType/api/delete/${id}`,
+            {
+              method: "DELETE",
+            }
+          )
+            .then((response) => response.json())
+            .then((data) => {
+              if (data.success) {
+                alert("Voucher deleted successfully!");
+                location.reload();
+              } else {
+                alert("Failed to delete voucher.");
+              }
+            })
+            .catch((error) => {
+              console.error("Error deleting voucher:", error);
+              alert("Error deleting voucher. Please try again.");
+            });
+        }
+      }
+    </script>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../js/script.js"></script>
+  </body>
 </html>
