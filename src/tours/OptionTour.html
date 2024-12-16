@@ -614,7 +614,7 @@
 
         const getDetail = async (detailId) => {
             try {
-                const response = await fetch(`https://trip-aura-server-git-main-minhnhut2306s-projects.vercel.app/detail/api/getDetail?detailId=${detailId}`,
+                const response = await fetch(`https://trip-aura-server.vercel.app/detail/api/getDetailByBooking?detailId=${detailId}`,
                     {
                         method: 'GET',
                         headers: {
@@ -623,7 +623,6 @@
                     });
                 const detail = await response.json()
                 console.log("====== detail", detail);
-
                 return detail.data
             } catch (error) {
                 console.log("====== lỗi", error);
@@ -636,10 +635,8 @@
             getOptionId(detailId)
             console.log("============= data", detail);
             if (detail) {
-                if (detail.status === "1") {
+                if (detail.lenght > 0) {
                     alert("Tour đang được bán không thể xóa")
-                } else if (new Date(detail.endDay) > new Date()) {
-                    alert("Tour chưa hoàn thành, không thể xóa")
                 } else {
                     const modalDelete = new bootstrap.Modal(document.getElementById('modalDelete'));
                     modalDelete.show();
@@ -653,9 +650,18 @@
             console.log("======== update", detail);
             // data-bs-toggle="modal" data-bs-target="#modalUpdate" 
             if (detail) {
-                if (detail.status === "1") {
+                if (detail.lenght > 0) {
                     alert("Tour đang được bán, không thể sửa")
                 } else {
+                    const startDay = document.getElementById('startDayUpdate').value
+                    const endDay = document.getElementById('endDayUpdate').value
+                    const maxTicket = document.getElementById('maxTicketUpdate').value
+                    const minTicket = document.getElementById('minTicketUpdate').value
+                    const priceAdult = document.getElementById('priceAdultUpdate').value
+                    const priceChildren = document.getElementById('priceChildrenUpdate').value
+                    const promotionalPrice = document.getElementById('promotionalPriceUpdate').value
+                    const status = 1
+                    const tourId = localStorage.getItem('tourIdOption')
                     fillForm(
                         detail.startDay,
                         detail.endDay,
