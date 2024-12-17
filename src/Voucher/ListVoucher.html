@@ -223,6 +223,7 @@
               currency: "VND",
             }
           );
+
           str += `<tr id="voucher-${item._id}">
             <td style="text-align: center;">${startDate}</td>
             <td style="text-align: center;">${endDate}</td>
@@ -230,7 +231,7 @@
             <td style="text-align: center;">${formattedCondition}</td>
             <td style="text-align: center;">
               <button type="button" class="btn btn-danger" onclick="deleteVoucher('${item._id}')">Delete</button>
-              <button type="button" class="btn btn-primary" >Edit</button>
+              <button type="button" class="btn btn-primary" onclick="editVoucher('${item._id}')">Edit</button>
             </td>
           </tr>`;
         });
@@ -240,6 +241,18 @@
         console.error("Error fetching vouchers:", error);
       });
 
+    // Show edit modal with voucher data
+    function editVoucher(voucherId) {
+      currentVoucherId = voucherId;
+
+      // Show the modal
+      const modal = new bootstrap.Modal(
+        document.getElementById("editVoucherModal")
+      );
+      modal.show();
+    }
+
+    // Handle form submit to update the voucher
     document
       .getElementById("editVoucherForm")
       .addEventListener("submit", function (event) {
@@ -281,11 +294,33 @@
           });
       });
 
-
+    // Delete voucher
     function deleteVoucher(voucherId) {
       const confirmation = confirm(
         "Are you sure you want to delete this voucher?"
       );
+      if (confirmation) {
+        fetch(
+          `https://trip-aura-server.vercel.app/voucher/api/delete/${voucherId}`,
+          {
+            method: "DELETE",
+          }
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.success) {
+              alert("Voucher deleted successfully.");
+              // Reload the voucher list after deletion
+              location.reload();
+            } else {
+              alert("Failed to delete voucher.");
+            }
+          })
+          .catch((error) => {
+            console.error("Error deleting voucher:", error);
+            alert("An error occurred while deleting the voucher.");
+          });
+      }
     }
   </script>
 </body>

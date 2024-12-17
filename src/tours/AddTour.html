@@ -23,6 +23,7 @@
             <div class="h-100">
                 <div class="sidebar-logo">
                     <a href="#">TripAura</a>
+                    <a href="#">TripAura</a>
                 </div>
              
                     <li class="sidebar-item">
@@ -39,46 +40,47 @@
                     <li class="sidebar-item">
                         <a href="#" class="sidebar-link collapsed" data-bs-target="#pages" data-bs-toggle="collapse"
                             aria-expanded="false"><i class="fa-solid fa-file-lines pe-2"></i>
-                            Category
+                            Danh mục
                         </a>
                         <ul id="pages" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                             <li class="sidebar-item">
-                                <a href="../categories/Listcategory.html" class="sidebar-link">List Category</a>
+                                <a href="../../src/categories/Listcategory.html" class="sidebar-link">Danh sách danh mục
+                                    Tour</a>
                             </li>
                             <li class="sidebar-item">
-                                <a href="../categories/Addcategory.html" class="sidebar-link">Add Category</a>
+                                <a href="../../src/categories/Addcategory.html" class="sidebar-link">Thêm danh mục
+                                    Tour</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="#" class="sidebar-link collapsed" data-bs-target="#posts" data-bs-toggle="collapse"
+                            aria-expanded="false">
+                            <i class="fa-solid fa-sliders pe-2"></i> Tours
+                        </a>
+                        <ul id="posts" class="sidebar-dropdown list-unstyled collapse">
+                            <li class="sidebar-item">
+                                <a href="../tours/ListTour.html" class="sidebar-link">Danh sách Tours</a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="../tours/AddTour.html" class="sidebar-link">Thêm Tour</a>
                             </li>
                         </ul>
                     </li>
 
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link collapsed" data-bs-target="#posts" data-bs-toggle="collapse"
-                            aria-expanded="false"><i class="fa-solid fa-sliders pe-2"></i>
-                            Tours
-                        </a>
-                        <ul id="posts" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                            <li class="sidebar-item">
-                                <a href="./ListTour.html" class="sidebar-link">List Tours</a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a href="./AddTour.html" class="sidebar-link">Add Tours</a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a href="./UpdateTour.html" class="sidebar-link">Update Tours</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="sidebar-item">
                         <a href="#" class="sidebar-link collapsed" data-bs-target="#voucherType"
                             data-bs-toggle="collapse" aria-expanded="false">
-                            <i class="fa-solid fa-sliders pe-2"></i> Voucher Type
+                            <i class="fa-solid fa-sliders pe-2"></i> Danh mục Voucher
                         </a>
                         <ul id="voucherType" class="sidebar-dropdown list-unstyled collapse">
                             <li class="sidebar-item">
-                                <a href="../VoucherType/ListVoucherType.html" class="sidebar-link">List VoucherType</a>
+                                <a href="../VoucherType/ListVoucherType.html" class="sidebar-link">Danh sách danh mục
+                                    Voucher</a>
                             </li>
                             <li class="sidebar-item">
-                                <a href="../VoucherType/AddVoucherType.html" class="sidebar-link">Add VoucherType</a>
+                                <a href="../VoucherType/AddVoucherType.html" class="sidebar-link">Thêm danh mục
+                                    Voucher</a>
                             </li>
                         </ul>
                     </li>
@@ -86,14 +88,14 @@
                     <li class="sidebar-item">
                         <a href="#" class="sidebar-link collapsed" data-bs-target="#voucher" data-bs-toggle="collapse"
                             aria-expanded="false"><i class="fa-regular fa-user pe-2"></i>
-                            Voucher
+                            Vouchers
                         </a>
                         <ul id="voucher" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                             <li class="sidebar-item">
-                                <a href="../Voucher/AddVoucher.html" class="sidebar-link">Add Voucher</a>
+                                <a href="../Voucher/AddVoucher.html" class="sidebar-link">Thêm Voucher</a>
                             </li>
                             <li class="sidebar-item">
-                                <a href="../Voucher/ListVoucher.html" class="sidebar-link">List Voucher</a>
+                                <a href="../Voucher/ListVoucher.html" class="sidebar-link">Danh sách Voucher</a>
                             </li>
                         </ul>
                     </li>
@@ -275,12 +277,8 @@
         })
         .then(editor => {
             editorInstance = editor;
-
-
             const btnAdd = document.getElementById('btnAddTour')
             btnAdd.addEventListener('click', addTour)
-
-
         })
         .catch(error => {
             console.log('lỗi ckeditor')
@@ -374,7 +372,7 @@
     }
 
     // add location
-    var addLocation = async (departure, destination, tourId) => {
+    var addLocation = async (departure, destination, province, tourId) => {
         try {
             const location = await fetch("https://trip-aura-server-git-main-minhnhut2306s-projects.vercel.app/location/api/add", {
                 method: "POST",
@@ -384,6 +382,7 @@
                 body: JSON.stringify({
                     departure: departure,
                     destination: destination,
+                    province: province,
                     tourId: tourId
                 })
             }).then(location => location.json())
