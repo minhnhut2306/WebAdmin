@@ -261,18 +261,23 @@
                     console.log('Dữ liệu từ server:', data);
                     console.log('Trạng thái từ server:', data.status);
 
+                    console.log("========= id", CancelId);
+
                     if (data.status === 'success') {
-                        const cancelResponse = await fetch(`http://localhost:3000/cancelorder/cancelOrder/update/${CancelId}`, {
+                        console.log(" vào r");
+
+                        const cancelResponse = await fetch(`https://trip-aura-server-git-main-minhnhut2306s-projects.vercel.app/cancelorder/cancelOrder/update/${CancelId}`, {
                             method: 'PUT',
                             headers: {
                                 'Content-Type': 'application/json',
                             },
-                            body: JSON.stringify({ status: 0 }),
+                            body: JSON.stringify({ status: "0" }),
                         });
-
+                        const cancelData = await cancelResponse.json();
+                        console.log("=========== cancelResponse", cancelResponse);
                         if (cancelResponse.ok) {
-                            const cancelData = await cancelResponse.json();
-                            if (cancelData.status === 'success') {
+
+                            if (cancelData.data.lenght > 0) {
                                 alert('Xác nhận đơn hàng và hủy đơn thành công!');
                                 // You can remove the row from the table here instead of reloading the page
                                 document.querySelector(`#cancelOrderRow${CancelId}`).remove();
