@@ -623,7 +623,7 @@
                     });
                 const detail = await response.json()
                 console.log("====== detail", detail);
-                return detail.data
+                return detail
             } catch (error) {
                 console.log("====== lỗi", error);
                 return false
@@ -635,11 +635,11 @@
             getOptionId(detailId)
             console.log("============= data", detail);
             if (detail) {
-                if (detail.lenght > 0) {
-                    alert("Tour đang được bán không thể xóa")
-                } else {
+                if (detail.code === 200) {
                     const modalDelete = new bootstrap.Modal(document.getElementById('modalDelete'));
                     modalDelete.show();
+                } else {
+                    alert("Tour đang được bán không thể xóa")
                 }
             }
 
@@ -649,10 +649,9 @@
             const detail = await getDetail(detailId)
             console.log("======== update", detail);
             // data-bs-toggle="modal" data-bs-target="#modalUpdate" 
+            const data = detail.data
             if (detail) {
-                if (detail.lenght > 0) {
-                    alert("Tour đang được bán, không thể sửa")
-                } else {
+                if (detail.code === 200) {
                     const startDay = document.getElementById('startDayUpdate').value
                     const endDay = document.getElementById('endDayUpdate').value
                     const maxTicket = document.getElementById('maxTicketUpdate').value
@@ -663,17 +662,19 @@
                     const status = 1
                     const tourId = localStorage.getItem('tourIdOption')
                     fillForm(
-                        detail.startDay,
-                        detail.endDay,
-                        detail.maxTicket,
-                        detail.minTicket,
-                        detail.priceAdult,
-                        detail.priceChildren,
-                        detail.PromotionalPrice,
-                        detail._id
+                        data.startDay,
+                        data.endDay,
+                        data.maxTicket,
+                        data.minTicket,
+                        data.priceAdult,
+                        data.priceChildren,
+                        data.PromotionalPrice,
+                        data._id
                     )
                     const modalUpdate = new bootstrap.Modal(document.getElementById('modalUpdate'));
                     modalUpdate.show();
+                } else {
+                    alert("Tour đang được bán, không thể sửa")
                 }
             } else {
                 console.error("lỗi checkUpdate");
