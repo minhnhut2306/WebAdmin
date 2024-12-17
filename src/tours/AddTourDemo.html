@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap Admin Dashboard</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css">
+    <script src="https://kit.fontawesome.com/ae360af17e.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+
+<body>
+    <style>
+        .ck-editor__editable[role="textbox"] {
+            min-height: 300px;
+        }
+    </style>
+    <div class="wrapper">
+        <aside id="sidebar" class="js-sidebar">
+            <!-- Content For Sidebar -->
+            <div class="h-100">
+                <div class="sidebar-logo">
+                    <a href="#">TripAura</a>
+                </div>
+                <ul class="sidebar-nav">
+                    <li class="sidebar-item">
+
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="#" class="sidebar-link collapsed" data-bs-target="#thongke" data-bs-toggle="collapse"
+                            aria-expanded="false"><i class="fa-solid fa-file-lines pe-2"></i>
+                            Thống kê
+                        </a>
+                        <ul id="thongke" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                            <li class="sidebar-item">
+                                <a href="../thongkes/DoanhThu.html" class="sidebar-link">Doanh thu</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="#" class="sidebar-link collapsed" data-bs-target="#pages" data-bs-toggle="collapse"
+                            aria-expanded="false"><i class="fa-solid fa-file-lines pe-2"></i>
+                            Danh mục
+                        </a>
+                        <ul id="pages" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                            <li class="sidebar-item">
+                                <a href="../../src/categories/Listcategory.html" class="sidebar-link">Danh sách danh mục
+                                    Tour</a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="../../src/categories/Addcategory.html" class="sidebar-link">Thêm danh mục
+                                    Tour</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="#" class="sidebar-link collapsed" data-bs-target="#posts" data-bs-toggle="collapse"
+                            aria-expanded="false">
+                            <i class="fa-solid fa-sliders pe-2"></i> Tours
+                        </a>
+                        <ul id="posts" class="sidebar-dropdown list-unstyled collapse">
+                            <li class="sidebar-item">
+                                <a href="../tours/ListTour.html" class="sidebar-link">Danh sách Tours</a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="../tours/AddTourDemo.html" class="sidebar-link">Thêm Tour</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="sidebar-item">
+                        <a href="#" class="sidebar-link collapsed" data-bs-target="#voucherType"
+                            data-bs-toggle="collapse" aria-expanded="false">
+                            <i class="fa-solid fa-sliders pe-2"></i> Danh mục Voucher
+                        </a>
+                        <ul id="voucherType" class="sidebar-dropdown list-unstyled collapse">
+                            <li class="sidebar-item">
+                                <a href="../VoucherType/ListVoucherType.html" class="sidebar-link">Danh sách danh mục
+                                    Voucher</a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="../VoucherType/AddVoucherType.html" class="sidebar-link">Thêm danh mục
+                                    Voucher</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="sidebar-item">
+                        <a href="#" class="sidebar-link collapsed" data-bs-target="#voucher" data-bs-toggle="collapse"
+                            aria-expanded="false"><i class="fa-regular fa-user pe-2"></i>
+                            Vouchers
+                        </a>
+                        <ul id="voucher" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                            <li class="sidebar-item">
+                                <a href="../Voucher/AddVoucher.html" class="sidebar-link">Thêm Voucher</a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="../Voucher/ListVoucher.html" class="sidebar-link">Danh sách Voucher</a>
+                            </li>
+                        </ul>
+                    <li class="sidebar-item">
+                        <a href="#" class="sidebar-link collapsed" data-bs-target="#users" data-bs-toggle="collapse"
+                            aria-expanded="false">
+                            <i class="fa-solid fa-sliders pe-2"></i> Users
+                        </a>
+                        <ul id="users" class="sidebar-dropdown list-unstyled collapse">
+                            <li class="sidebar-item">
+                                <a href="../users/ListUser.html" class="sidebar-link">Danh sách Users</a>
+                            </li>
+                        </ul>
+                    </li>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+        <div class="main">
+            <nav class="navbar navbar-expand px-3 border-bottom">
+                <button class="btn" id="sidebar-toggle" type="button">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse navbar">
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a href="#" data-bs-toggle="dropdown" class="nav-icon pe-md-0">
+                                <img src="../../image/profile.jpg" class="avatar img-fluid rounded" alt="">
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <a href="#" class="dropdown-item">Profile</a>
+                                <a href="#" class="dropdown-item">Setting</a>
+                                <a href="./Login.html" class="dropdown-item">Logout</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <main class="content px-3 py-2">
+                <!-- Form -->
+                <div class="container mb-4">
+                    <form id="form">
+                        <div class="mb-3">
+                            <label for="tourName" class="form-label">Tour name:</label>
+                            <input type="text" class="form-control" id="tourName" name="tourName">
+                        </div>
+                        <div class="mb-3" style="height: 360px;">
+                            <label for="description" class="form-label">Description:</label>
+                            <!-- <input type="text" class="form-control" id="description" name="description"> -->
+                            <textarea name="description" id="description" class="form-control"></textarea>
+
+                        </div>
+                        <div class="mb-3">
+                            <label for="selectCate" class="form-label">CategoryId:</label>
+                            <select class="form-select" id="selectCate" aria-label="Default select example">
+
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="departure" class="form-label">departure:</label>
+                            <input type="text" class="form-control" id="departure" name="departure">
+                        </div>
+                        <div class="mb-3">
+                            <label for="destination" class="form-label">destination:</label>
+                            <input type="text" class="form-control" id="destination" name="destination">
+                        </div>
+                        <div class="mb-3">
+                            <label for="province" class="form-label">Tỉnh:</label>
+                            <input type="text" class="form-control" id="province" name="province">
+                        </div>
+                        <div class="mb-3">
+                            <label for="linkImage" class="form-label">linkImage:</label>
+                            <button type="button" class="btn btn-danger" onclick="themLinkHinh()">Thêm
+                                hình</button>
+
+                            <input type="text" class="form-control" id="linkImage" name="linkImage">
+                        </div>
+                        <div class="row" id="hinh">
+
+                        </div>
+                        <button type="button" class="btn btn-primary" id="btnAddTour">Submit</button>
+                    </form>
+                </div>
+                <!-- form -->
+            </main>
+            <a href="#" class="theme-toggle">
+                <i class="fa-regular fa-moon"></i>
+                <i class="fa-regular fa-sun"></i>
+            </a>
+            <footer class="footer">
+                <div class="container-fluid">
+                    <div class="row text-muted">
+                        <div class="col-6 text-start">
+                            <p class="mb-0">
+                                <a href="#" class="text-muted">
+                                    <strong>CodzSwod</strong>
+                                </a>
+                            </p>
+                        </div>
+                        <div class="col-6 text-end">
+                            <ul class="list-inline">
+                                <li class="list-inline-item">
+                                    <a href="#" class="text-muted">Contact</a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="#" class="text-muted">About Us</a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="#" class="text-muted">Terms</a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="#" class="text-muted">Booking</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../js/script.js"></script>
+    <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/43.3.1/ckeditor5.css" />
+
+
+</body>
+<script type="importmap">
+        {
+            "imports": {
+                "ckeditor5": "https://cdn.ckeditor.com/ckeditor5/43.3.1/ckeditor5.js",
+                "ckeditor5/": "https://cdn.ckeditor.com/ckeditor5/43.3.1/"
+                
+            }
+        }
+    </script>
+<script type="module">
+    import {
+        ClassicEditor,
+        Essentials,
+        Bold,
+        Italic,
+        Font,
+        Paragraph,
+        Image,
+        ImageToolbar,
+        ImageCaption,
+        ImageStyle,
+        ImageUpload,
+        SimpleUploadAdapter,
+        Heading,
+        Alignment,
+        List, Underline,
+
+    } from 'ckeditor5';
+    let editorInstance;
+
+
+    ClassicEditor
+        .create(document.querySelector('#description'), {
+            plugins: [Essentials, Bold, Italic, Font, Paragraph, Underline,
+                Image, ImageToolbar, ImageCaption, ImageStyle, ImageUpload, SimpleUploadAdapter, Heading,
+                Alignment,
+                List,
+            ],
+            toolbar: [
+                'undo', 'redo', '|', 'bold', 'italic', 'underline', '|',
+                'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor', '|',
+                'alignment:left', 'alignment:center', 'alignment:right', 'alignment:justify', '|',
+                'heading', '|', 'numberedList', 'bulletedList', '|', 'imageUpload'
+            ],
+            heading: {
+                options: [
+                    { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+                    { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
+                    { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' },
+                    { model: 'heading3', view: 'h3', title: 'Heading 3', class: 'ck-heading_heading3' }
+                ]
+            },
+            alignment: {
+                options: ['left', 'center', 'right', 'justify']
+            },
+            image: {
+                toolbar: [
+                    'imageTextAlternative', '|',
+                    'imageStyle:full', 'imageStyle:side'
+                ], styles: [
+                    { name: 'full', title: 'Full width', icon: 'full', modelElements: 'blockImage' },
+                    { name: 'side', title: 'Side image', icon: 'side', modelElements: 'blockImage' }
+                ]
+            },
+        })
+        .then(editor => {
+            editorInstance = editor;
+            const btnAdd = document.getElementById('btnAddTour')
+            btnAdd.addEventListener('click', addTour)
+        })
+        .catch(error => {
+            console.log('lỗi ckeditor')
+        });
+
+
+
+    // Lấy nội dung từ CKEditor
+
+
+
+
+
+    const addTour = async () => {
+        const tourName = document.getElementById('tourName').value;
+        const description = editorInstance.getData();
+        const category = document.getElementById('selectCate').value;
+        const destination = document.getElementById('destination').value;
+        const departure = document.getElementById('departure').value;
+        const province = document.getElementById('province').value;
+        const linkImge = document.getElementById('linkImage').value
+        console.log("====== linkImage", description);
+
+
+        console.log({ tourName, description, category });
+
+        if (tourName == "" || description == "" || category == "" || province == "") {
+            alert("Bạn cần nhập đầy đủ thông tin");
+        } else {
+            try {
+                let response = await fetch('https://trip-aura-server-git-main-minhnhut2306s-projects.vercel.app/tour/api/add', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        tourName: tourName,
+                        description: description,
+                        category: category,
+                    })
+                }).then(response => response.json())
+                console.log("res", response.data);
+                localStorage.setItem("tourId", response.data._id)
+                if (response.status == "success") {
+                    await addLocation(departure, destination, province, localStorage.getItem('tourId'))
+                    await addImage(linkImge, localStorage.getItem('tourId'))
+                    alert("Thêm tour thành công")
+                    editorInstance.setData('');
+                    clearForm()
+                } else {
+                    alert('Thêm sản phẩm thất bại');
+                }
+            } catch (error) {
+                console.log('loi', error);
+            }
+        }
+    };
+
+    // Bạn có thể gắn sự kiện hoặc gọi trực tiếp hàm addTour nếu cần
+
+
+
+</script>
+
+<script>
+
+    // selection Category
+    var str = '<option value="">Null<option/>';
+    let response = fetch('https://trip-aura-server-git-main-minhnhut2306s-projects.vercel.app/category/api/getCategory')
+        .then(response => response.json())
+        .then(category => {
+            console.log("===== category ", category.data);
+            category.data.forEach(item => {
+                str += `<option value="${item._id}">${item.name}<option/>`;
+            })
+            document.getElementById("selectCate").innerHTML = str;
+        })
+        .catch(error => {
+            console.log(error);
+        })
+
+    const renderImages = () => {
+        strLinkImage = '';
+        arraylink.forEach((item, index) => {
+            strLinkImage += `
+            <div class="col-sm-4 position-relative">
+                <button type="button" class="btn btn-danger btn-sm position-absolute top-0 end-0 m-1" onclick="deleteImage(${index})">
+                    &times;
+                </button>
+                <img src="${item}" style="height: 200px; width: 100%;" class="img-thumbnail mx-auto d-block" alt="Image">
+            </div>`;
+        });
+        document.getElementById('hinh').innerHTML = strLinkImage;
+    };
+    const deleteImage = (index) => {
+        if (confirm("Bạn có chắc chắn muốn xóa hình này không?")) {
+            arraylink.splice(index, 1); // Xóa hình tại vị trí index
+            renderImages(); // Render lại danh sách hình ảnh
+        }
+    };
+
+
+    var strLinkImage = ``;
+    // thêm input nhập link ảnh
+    var arraylink = []
+    const themLinkHinh = async () => {
+        const linkImage = document.getElementById('linkImage').value
+        console.log("==========array", arraylink);
+        document.getElementById('linkImage').value = ""
+        await imageCloudinary(linkImage);
+    }
+
+    // add location
+    var addLocation = async (departure, destination, province, tourId) => {
+        try {
+            const location = await fetch("https://trip-aura-server-git-main-minhnhut2306s-projects.vercel.app/location/api/add", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    departure: departure,
+                    destination: destination,
+                    province: province,
+                    tourId: tourId
+                })
+            }).then(location => location.json())
+            console.log(location);
+
+        } catch (error) {
+            console.log('loi add location', error);
+            return false
+        }
+    }
+
+
+    //add image
+    const addImage = async (linkImage, tourId) => {
+        try {
+            const image = await fetch('https://trip-aura-server-git-main-minhnhut2306s-projects.vercel.app/image/api/add', {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    linkImage: arraylink,
+                    tourId: tourId
+                })
+            }).then(image => image.json())
+
+
+        } catch (error) {
+            console.log('loi add image', error);
+            return false
+        }
+    }
+
+    // cloudinary
+    const imageCloudinary = async (image) => {
+        try {
+            const imageClou = await fetch('https://trip-aura-server-git-main-minhnhut2306s-projects.vercel.app/image/api/uploadImageCloudinary', {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    image
+                })
+
+            }).then(imageClou => imageClou.json())
+            console.log("===============", imageClou.data.secure_url);
+            arraylink.push(imageClou.data.secure_url)
+            strLinkImage = '';
+            renderImages()
+            // arraylink.forEach((item, index) => {
+            //     strLinkImage +=
+            //         `<div class = "col-sm-4"> 
+            //             <img src="${arraylink[index]}" style="height: 200px; width:400px;" class="img-thumbnail mx-auto d-block" alt="Cinque Terre">
+            //     </div>`;
+            // })
+            // document.getElementById('hinh').innerHTML = strLinkImage
+        } catch (error) {
+            console.log(error);
+
+        }
+    }
+
+    const clearForm = () => {
+        document.getElementById("tourName").value = "";
+        document.getElementById("description").value = "";
+        document.getElementById("departure").value = "";
+        document.getElementById("destination").value = "";
+        document.getElementById("linkImage").value = "";
+
+        // Reset dropdown về giá trị mặc định đầu tiên
+        document.getElementById("selectCate").selectedIndex = 0;
+        document.getElementById('hinh').innerHTML = ''
+        arraylink = ''
+    }
+
+</script>
+
+</html>
