@@ -274,14 +274,13 @@
     </a>
 
     <script>
-      // Fetch the voucher types data
+ 
       fetch("https://trip-aura-server.vercel.app/voucherType/api/getAll")
         .then((response) => response.json())
         .then((data) => {
-          const voucherTypes = data.data; // Assuming the data structure has a 'data' array
+          const voucherTypes = data.data; 
           let str = "";
 
-          // Loop through the data and create table rows
           voucherTypes.forEach((item) => {
             str += `
         <tr data-id="${item.id}">
@@ -336,7 +335,6 @@
           });
       }
 
-      // Function to delete a voucher type
       function deleteVoucher(id) {
         if (confirm("Bạn có chắc muốn xóa Voucher này không ?")) {
           

@@ -7,32 +7,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bootstrap Admin Dashboard</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css">
-    <script src="https://kit.fontawesome.com/ae360af17e.js" crossorigin="anonymous"></script>
+    <!-- <script src="https://kit.fontawesome.com/ae360af17e.js" crossorigin="anonymous"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="../../css/style.css">
 </head>
 
 <body>
-    <style>
-        .ck-editor__editable[role="textbox"] {
-            min-height: 300px;
-        }
-    </style>
     <div class="wrapper">
         <aside id="sidebar" class="js-sidebar">
             <!-- Content For Sidebar -->
             <div class="h-100">
                 <div class="sidebar-logo">
-                    <a href="#">CodzSword</a>
+                    <a href="#">TripAura</a>
                 </div>
                 <ul class="sidebar-nav">
-                    <li class="sidebar-header">
-                        Admin Elements
-                    </li>
                     <li class="sidebar-item">
-                        <a href="../../index.html" class="sidebar-link">
-                            <i class="fa-solid fa-list pe-2"></i>
-                            Dashboard
-                        </a>
+
                     </li>
                     <li class="sidebar-item">
                         <a href="#" class="sidebar-link collapsed" data-bs-target="#thongke" data-bs-toggle="collapse"
@@ -48,46 +38,47 @@
                     <li class="sidebar-item">
                         <a href="#" class="sidebar-link collapsed" data-bs-target="#pages" data-bs-toggle="collapse"
                             aria-expanded="false"><i class="fa-solid fa-file-lines pe-2"></i>
-                            Category
+                            Danh mục
                         </a>
                         <ul id="pages" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                             <li class="sidebar-item">
-                                <a href="../categories/Listcategory.html" class="sidebar-link">List Category</a>
+                                <a href="../../src/categories/Listcategory.html" class="sidebar-link">Danh sách danh mục
+                                    Tour</a>
                             </li>
                             <li class="sidebar-item">
-                                <a href="../categories/Addcategory.html" class="sidebar-link">Add Category</a>
+                                <a href="../../src/categories/Addcategory.html" class="sidebar-link">Thêm danh mục
+                                    Tour</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="#" class="sidebar-link collapsed" data-bs-target="#posts" data-bs-toggle="collapse"
+                            aria-expanded="false">
+                            <i class="fa-solid fa-sliders pe-2"></i> Tours
+                        </a>
+                        <ul id="posts" class="sidebar-dropdown list-unstyled collapse">
+                            <li class="sidebar-item">
+                                <a href="../tours/ListTour.html" class="sidebar-link">Danh sách Tours</a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="../tours/AddTour.html" class="sidebar-link">Thêm Tour</a>
                             </li>
                         </ul>
                     </li>
 
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link collapsed" data-bs-target="#posts" data-bs-toggle="collapse"
-                            aria-expanded="false"><i class="fa-solid fa-sliders pe-2"></i>
-                            Tours
-                        </a>
-                        <ul id="posts" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                            <li class="sidebar-item">
-                                <a href="./ListTour.html" class="sidebar-link">List Tours</a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a href="./AddTour.html" class="sidebar-link">Add Tours</a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a href="./UpdateTour.html" class="sidebar-link">Update Tours</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="sidebar-item">
                         <a href="#" class="sidebar-link collapsed" data-bs-target="#voucherType"
                             data-bs-toggle="collapse" aria-expanded="false">
-                            <i class="fa-solid fa-sliders pe-2"></i> Voucher Type
+                            <i class="fa-solid fa-sliders pe-2"></i> Danh mục Voucher
                         </a>
                         <ul id="voucherType" class="sidebar-dropdown list-unstyled collapse">
                             <li class="sidebar-item">
-                                <a href="../VoucherType/ListVoucherType.html" class="sidebar-link">List VoucherType</a>
+                                <a href="../VoucherType/ListVoucherType.html" class="sidebar-link">Danh sách danh mục
+                                    Voucher</a>
                             </li>
                             <li class="sidebar-item">
-                                <a href="../VoucherType/AddVoucherType.html" class="sidebar-link">Add VoucherType</a>
+                                <a href="../VoucherType/AddVoucherType.html" class="sidebar-link">Thêm danh mục
+                                    Voucher</a>
                             </li>
                         </ul>
                     </li>
@@ -95,40 +86,27 @@
                     <li class="sidebar-item">
                         <a href="#" class="sidebar-link collapsed" data-bs-target="#voucher" data-bs-toggle="collapse"
                             aria-expanded="false"><i class="fa-regular fa-user pe-2"></i>
-                            Voucher
+                            Vouchers
                         </a>
                         <ul id="voucher" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                             <li class="sidebar-item">
-                                <a href="../Voucher/AddVoucher.html" class="sidebar-link">Add Voucher</a>
+                                <a href="../Voucher/AddVoucher.html" class="sidebar-link">Thêm Voucher</a>
                             </li>
                             <li class="sidebar-item">
-                                <a href="../Voucher/ListVoucher.html" class="sidebar-link">List Voucher</a>
+                                <a href="../Voucher/ListVoucher.html" class="sidebar-link">Danh sách Voucher</a>
                             </li>
                         </ul>
-                    </li>
-
-                    <li class="sidebar-header">
-                        Multi Level Menu
-                    </li>
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link collapsed" data-bs-target="#multi" data-bs-toggle="collapse"
-                            aria-expanded="false"><i class="fa-solid fa-share-nodes pe-2"></i>
-                            Multi Dropdown
+                        <a href="#" class="sidebar-link collapsed" data-bs-target="#users" data-bs-toggle="collapse"
+                            aria-expanded="false">
+                            <i class="fa-solid fa-sliders pe-2"></i> Users
                         </a>
-                        <ul id="multi" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                        <ul id="users" class="sidebar-dropdown list-unstyled collapse">
                             <li class="sidebar-item">
-                                <a href="#" class="sidebar-link collapsed" data-bs-target="#level-1"
-                                    data-bs-toggle="collapse" aria-expanded="false">Level 1</a>
-                                <ul id="level-1" class="sidebar-dropdown list-unstyled collapse">
-                                    <li class="sidebar-item">
-                                        <a href="#" class="sidebar-link">Level 1.1</a>
-                                    </li>
-                                    <li class="sidebar-item">
-                                        <a href="#" class="sidebar-link">Level 1.2</a>
-                                    </li>
-                                </ul>
+                                <a href="../users/ListUser.html" class="sidebar-link">Danh sách Users</a>
                             </li>
                         </ul>
+                    </li>
                     </li>
                 </ul>
             </div>
@@ -153,52 +131,19 @@
                     </ul>
                 </div>
             </nav>
-            <main class="content px-3 py-2">
-                <!-- Form -->
-                <div class="container mb-4">
-                    <form id="form">
-                        <div class="mb-3">
-                            <label for="tourName" class="form-label">Tour name:</label>
-                            <input type="text" class="form-control" id="tourName" name="tourName">
-                        </div>
-                        <div class="mb-3" style="height: 360px;">
-                            <label for="description" class="form-label">Description:</label>
-                            <!-- <input type="text" class="form-control" id="description" name="description"> -->
-                            <textarea name="description" id="description" class="form-control"></textarea>
-
-                        </div>
-                        <div class="mb-3">
-                            <label for="selectCate" class="form-label">CategoryId:</label>
-                            <select class="form-select" id="selectCate" aria-label="Default select example">
-
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="departure" class="form-label">departure:</label>
-                            <input type="text" class="form-control" id="departure" name="departure">
-                        </div>
-                        <div class="mb-3">
-                            <label for="destination" class="form-label">destination:</label>
-                            <input type="text" class="form-control" id="destination" name="destination">
-                        </div>
-                        <div class="mb-3">
-                            <label for="province" class="form-label">Tỉnh:</label>
-                            <input type="text" class="form-control" id="province" name="province">
-                        </div>
-                        <div class="mb-3">
-                            <label for="linkImage" class="form-label">linkImage:</label>
-                            <button type="button" class="btn btn-danger" onclick="themLinkHinh()">Thêm
-                                hình</button>
-
-                            <input type="text" class="form-control" id="linkImage" name="linkImage">
-                        </div>
-                        <div class="row" id="hinh">
-
-                        </div>
-                        <button type="button" class="btn btn-primary" id="btnAddTour">Submit</button>
-                    </form>
+            <main class="content d-flex flex-column justify-content-center align-items-center px-3 py-2">
+                <!-- contain -->
+                <select class="form-select" aria-label="Chọn năm" id="yearSelect">
+                </select>
+                <div class="col-md-10">
+                    <canvas id="revenueChart"></canvas>
+                    <h3 style="text-align: center;">Doanh thu</h3>
                 </div>
-                <!-- form -->
+                <div class="col-md-10">
+                    <canvas id="ticketsChart"></canvas>
+                    <h3 style="text-align: center;">Số vé</h3>
+                </div>
+
             </main>
             <a href="#" class="theme-toggle">
                 <i class="fa-regular fa-moon"></i>
@@ -241,256 +186,166 @@
 
 
 </body>
-<script type="importmap">
-        {
-            "imports": {
-                "ckeditor5": "https://cdn.ckeditor.com/ckeditor5/43.3.1/ckeditor5.js",
-                "ckeditor5/": "https://cdn.ckeditor.com/ckeditor5/43.3.1/"
-                
-            }
-        }
-    </script>
-<script type="module">
-    import {
-        ClassicEditor,
-        Essentials,
-        Bold,
-        Italic,
-        Font,
-        Paragraph,
-        Image,
-        ImageToolbar,
-        ImageCaption,
-        ImageStyle,
-        ImageUpload,
-        SimpleUploadAdapter,
-        Heading,
-        Alignment,
-        List, Underline,
+<script>
+    // Số lượng năm muốn hiển thị
+    const totalYears = 10; // Số năm muốn hiển thị
+    const currentYear = new Date().getFullYear(); // Lấy năm hiện tại
+    const select = document.getElementById("yearSelect");
 
-    } from 'ckeditor5';
-    let editorInstance;
+    // Tạo danh sách năm
+    for (let i = currentYear; i >= currentYear - totalYears; i--) {
+        const option = document.createElement("option");
+        option.value = i;
+        option.textContent = i;
+        select.appendChild(option);
+    }
 
+    // Đặt năm hiện tại làm mặc định
+    select.value = currentYear;
 
-    ClassicEditor
-        .create(document.querySelector('#description'), {
-            plugins: [Essentials, Bold, Italic, Font, Paragraph, Underline,
-                Image, ImageToolbar, ImageCaption, ImageStyle, ImageUpload, SimpleUploadAdapter, Heading,
-                Alignment,
-                List,
+    let revenueByMonth = {};
+    let ticketsSoldByMonth = {};
+
+    // Cấu hình ban đầu cho biểu đồ doanh thu
+    const revenueData = {
+        labels: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6',
+            'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'],
+        datasets: [{
+            label: 'Doanh thu (triệu VND)',
+            data: Array(12).fill(0), // Mặc định 0 cho tất cả các tháng
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.5)',
+                'rgba(54, 162, 235, 0.5)',
+                'rgba(255, 206, 86, 0.5)',
+                'rgba(75, 192, 192, 0.5)',
+                'rgba(153, 102, 255, 0.5)',
+                'rgba(255, 159, 64, 0.5)',
+                'rgba(54, 235, 162, 0.5)',
+                'rgba(75, 86, 192, 0.5)',
+                'rgba(255, 102, 132, 0.5)',
+                'rgba(153, 255, 102, 0.5)',
+                'rgba(206, 86, 255, 0.5)',
+                'rgba(192, 192, 75, 0.5)'
             ],
-            toolbar: [
-                'undo', 'redo', '|', 'bold', 'italic', 'underline', '|',
-                'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor', '|',
-                'alignment:left', 'alignment:center', 'alignment:right', 'alignment:justify', '|',
-                'heading', '|', 'numberedList', 'bulletedList', '|', 'imageUpload'
-            ],
-            heading: {
-                options: [
-                    { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
-                    { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
-                    { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' },
-                    { model: 'heading3', view: 'h3', title: 'Heading 3', class: 'ck-heading_heading3' }
-                ]
-            },
-            alignment: {
-                options: ['left', 'center', 'right', 'justify']
-            },
-            image: {
-                toolbar: [
-                    'imageTextAlternative', '|',
-                    'imageStyle:full', 'imageStyle:side'
-                ], styles: [
-                    { name: 'full', title: 'Full width', icon: 'full', modelElements: 'blockImage' },
-                    { name: 'side', title: 'Side image', icon: 'side', modelElements: 'blockImage' }
-                ]
-            },
-        })
-        .then(editor => {
-            editorInstance = editor;
+            borderColor: 'rgba(0, 0, 0, 0.1)',
+            borderWidth: 1
+        }]
+    };
 
+    // Cấu hình ban đầu cho biểu đồ số vé bán
+    const ticketsData = {
+        labels: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6',
+            'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'],
+        datasets: [{
+            label: 'Số vé bán',
+            data: Array(12).fill(0), // Mặc định 0 cho tất cả các tháng
+            backgroundColor: 'rgba(0, 123, 255, 0.5)',
+            borderColor: 'rgba(0, 123, 255, 1)',
+            borderWidth: 1
+        }]
+    };
 
-            const btnAdd = document.getElementById('btnAddTour')
-            btnAdd.addEventListener('click', addTour)
-
-
-        })
-        .catch(error => {
-            console.log('lỗi ckeditor')
-        });
-
-
-
-    // Lấy nội dung từ CKEditor
-
-
-
-
-
-    const addTour = async () => {
-        const tourName = document.getElementById('tourName').value;
-        const description = editorInstance.getData();
-        const category = document.getElementById('selectCate').value;
-        const destination = document.getElementById('destination').value;
-        const departure = document.getElementById('departure').value;
-        const province = document.getElementById('province').value;
-        const linkImge = document.getElementById('linkImage').value
-        console.log("====== linkImage", description);
-
-
-        console.log({ tourName, description, category });
-
-        if (tourName == "" || description == "" || category == "" || province == "") {
-            alert("Bạn cần nhập đầy đủ thông tin");
-        } else {
-            try {
-                let response = await fetch('https://trip-aura-server-git-main-minhnhut2306s-projects.vercel.app/tour/api/add', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        tourName: tourName,
-                        description: description,
-                        category: category,
-                    })
-                }).then(response => response.json())
-                console.log("res", response.data);
-                localStorage.setItem("tourId", response.data._id)
-                if (response.status == "success") {
-                    await addLocation(departure, destination, province, localStorage.getItem('tourId'))
-                    await addImage(linkImge, localStorage.getItem('tourId'))
-                    alert("Thêm tour thành công")
-                    editorInstance.setData('');
-                    clearForm()
-                } else {
-                    alert('Thêm sản phẩm thất bại');
+    // Cấu hình biểu đồ doanh thu
+    const revenueConfig = {
+        type: 'bar',
+        data: revenueData,
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
                 }
-            } catch (error) {
-                console.log('loi', error);
             }
         }
     };
 
-    // Bạn có thể gắn sự kiện hoặc gọi trực tiếp hàm addTour nếu cần
+    // Cấu hình biểu đồ số vé bán
+    const ticketsConfig = {
+        type: 'bar',
+        data: ticketsData,
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    };
 
+    // Khởi tạo biểu đồ doanh thu
+    const ctxRevenue = document.getElementById('revenueChart').getContext('2d');
+    const revenueChart = new Chart(ctxRevenue, revenueConfig);
 
+    // Khởi tạo biểu đồ số vé bán
+    const ctxTickets = document.getElementById('ticketsChart').getContext('2d');
+    const ticketsChart = new Chart(ctxTickets, ticketsConfig);
 
-</script>
-
-<script>
-
-    // selection Category
-    var str = '<option value="">Null<option/>';
-    let response = fetch('https://trip-aura-server-git-main-minhnhut2306s-projects.vercel.app/category/api/getCategory')
-        .then(response => response.json())
-        .then(category => {
-            console.log("===== category ", category.data);
-            category.data.forEach(item => {
-                str += `<option value="${item._id}">${item.name}<option/>`;
-            })
-            document.getElementById("selectCate").innerHTML = str;
-        })
-        .catch(error => {
-            console.log(error);
-        })
-
-    // add tour
-    var strLinkImage = ``;
-    // thêm input nhập link ảnh
-    var arraylink = []
-    const themLinkHinh = async () => {
-        const linkImage = document.getElementById('linkImage').value
-        console.log("==========array", arraylink);
-        document.getElementById('linkImage').value = ""
-        await imageCloudinary(linkImage);
-    }
-
-    // add location
-    var addLocation = async (departure, destination, tourId) => {
+    // Hàm lấy dữ liệu doanh thu theo năm
+    const getByYear = async (year) => {
         try {
-            const location = await fetch("https://trip-aura-server-git-main-minhnhut2306s-projects.vercel.app/location/api/add", {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    departure: departure,
-                    destination: destination,
-                    tourId: tourId
-                })
-            }).then(location => location.json())
-            console.log(location);
+            const response = await fetch(`https://trip-aura-server-git-main-minhnhut2306s-projects.vercel.app/booking/api/getBookingByYear?year=${year}`);
+            const booking = await response.json();
+            console.log("Dữ liệu doanh thu:", booking.data);
+
+            // Khởi tạo doanh thu và số vé bán cho 12 tháng
+            revenueByMonth = {};
+            ticketsSoldByMonth = {};
+            for (let month = 1; month <= 12; month++) {
+                const key = `${month < 10 ? '0' : ''}${month}`;
+                revenueByMonth[key] = 0;
+                ticketsSoldByMonth[key] = 0;
+            }
+
+            // Tính toán doanh thu và số vé bán theo tháng
+            booking.data.forEach(item => {
+                const date = new Date(item.createAt);
+                const month = date.getMonth() + 1; // Tháng
+                const key = `${month < 10 ? '0' : ''}${month}`;
+
+                // Cộng dồn doanh thu
+                revenueByMonth[key] += item.totalPrice;
+
+                // Cộng dồn số vé bán
+                ticketsSoldByMonth[key] += item.numAdult + item.numChildren;
+            });
+
+            // Đảm bảo doanh thu và số vé bán được lấy theo thứ tự tháng 1 -> 12
+            const revenueValues = [];
+            const ticketsSoldValues = [];
+            for (let month = 1; month <= 12; month++) {
+                const key = `${month < 10 ? '0' : ''}${month}`;
+                revenueValues.push(revenueByMonth[key]);
+                ticketsSoldValues.push(ticketsSoldByMonth[key]);
+            }
+
+            console.log("Doanh thu theo tháng (giá trị):", revenueValues);
+            console.log("Số vé bán theo tháng:", ticketsSoldValues);
+
+            // Cập nhật biểu đồ doanh thu
+            updateChart(revenueChart, revenueValues);
+
+            // Cập nhật biểu đồ số vé bán
+            updateChart(ticketsChart, ticketsSoldValues);
 
         } catch (error) {
-            console.log('loi add location', error);
-            return false
+            console.error("Lỗi khi lấy dữ liệu:", error);
         }
-    }
+    };
 
+    // Hàm cập nhật biểu đồ
+    const updateChart = (chart, dataValues) => {
+        // Cập nhật dữ liệu biểu đồ với các giá trị
+        chart.data.datasets[0].data = dataValues;
+        chart.update(); // Cập nhật biểu đồ
+    };
 
-    //add image
-    const addImage = async (linkImage, tourId) => {
-        try {
-            const image = await fetch('https://trip-aura-server-git-main-minhnhut2306s-projects.vercel.app/image/api/add', {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    linkImage: arraylink,
-                    tourId: tourId
-                })
-            }).then(image => image.json())
+    // Xử lý khi thay đổi năm
+    getByYear(select.value);
+    select.addEventListener("change", (event) => {
+        const selectedYear = event.target.value;
+        console.log(`Năm được chọn: ${selectedYear}`);
+        getByYear(selectedYear);
+    });
 
-
-        } catch (error) {
-            console.log('loi add image', error);
-            return false
-        }
-    }
-
-    // cloudinary
-    const imageCloudinary = async (image) => {
-        try {
-            const imageClou = await fetch('https://trip-aura-server-git-main-minhnhut2306s-projects.vercel.app/image/api/uploadImageCloudinary', {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    image
-                })
-
-            }).then(imageClou => imageClou.json())
-            console.log("===============", imageClou.data.secure_url);
-            arraylink.push(imageClou.data.secure_url)
-            strLinkImage = '';
-            arraylink.forEach((item, index) => {
-                strLinkImage +=
-                    `<div class = "col-sm-4"> 
-                        <img src="${arraylink[index]}" style="height: 200px; width:400px;" class="img-thumbnail mx-auto d-block" alt="Cinque Terre">
-                </div>`;
-            })
-            document.getElementById('hinh').innerHTML = strLinkImage
-        } catch (error) {
-            console.log(error);
-
-        }
-    }
-
-    const clearForm = () => {
-        document.getElementById("tourName").value = "";
-        document.getElementById("description").value = "";
-        document.getElementById("departure").value = "";
-        document.getElementById("destination").value = "";
-        document.getElementById("linkImage").value = "";
-
-        // Reset dropdown về giá trị mặc định đầu tiên
-        document.getElementById("selectCate").selectedIndex = 0;
-        document.getElementById('hinh').innerHTML = ''
-        arraylink = ''
-    }
 
 </script>
 
