@@ -231,7 +231,7 @@
             <td style="text-align: center;">${formattedCondition}</td>
             <td style="text-align: center;">
               <button type="button" class="btn btn-danger" onclick="deleteVoucher('${item._id}')">Delete</button>
-              <button type="button" class="btn btn-primary" onclick="editVoucher('${item._id}')">Edit</button>
+              <button type="button" class="btn btn-primary"('')">Edit</button>
             </td>
           </tr>`;
         });
@@ -241,18 +241,8 @@
         console.error("Error fetching vouchers:", error);
       });
 
-    // Show edit modal with voucher data
-    function editVoucher(voucherId) {
-      currentVoucherId = voucherId;
+   
 
-      // Show the modal
-      const modal = new bootstrap.Modal(
-        document.getElementById("editVoucherModal")
-      );
-      modal.show();
-    }
-
-    // Handle form submit to update the voucher
     document
       .getElementById("editVoucherForm")
       .addEventListener("submit", function (event) {
@@ -301,7 +291,7 @@
       );
       if (confirmation) {
         fetch(
-          `https://trip-aura-server.vercel.app/voucher/api/delete/${voucherId}`,
+          `https://trip-aura-server.vercel.app/voucher/api/deletee/${voucherId}`,
           {
             method: "DELETE",
           }
