@@ -122,10 +122,10 @@
       <!-- Content Form -->
       <main class="content px-3 py-4">
         <h3>Thêm Voucher Mới</h3>
-        <form id="addVoucherForm" action="https://trip-aura-server.vercel.app/voucherType/api/add" method="POST">
+        <form id="addVoucherForm">
           <div class="mb-3">
-            <label for="voucherName" class="form-label">Voucher Name</label>
-            <input type="text" class="form-control" id="voucherName" name="name" placeholder="Nhập tên Voucher"
+            <label class="form-label">Voucher Name</label>
+            <input type="text" class="form-control"  name="name" placeholder="Nhập tên Voucher"
               required />
           </div>
           <button type="submit" class="btn btn-success">Submit</button>
@@ -144,8 +144,35 @@
       document
         .getElementById("addVoucherForm")
         .addEventListener("submit", function (event) {
-          alert("Voucher đã được thêm thành công!"); // Hiển thị thông báo thành công
-          location.reload(); // Reload lại trang
+          event.preventDefault(); // Ngăn form gửi yêu cầu mặc định
+          
+          // Lấy dữ liệu từ form
+          const formData = new FormData(this);
+          const formObject = {};
+          formData.forEach((value, key) => {
+            formObject[key] = value;
+          });
+  
+          // Gửi yêu cầu POST bằng Fetch API
+          fetch("https://trip-aura-server.vercel.app/voucherType/api/addd", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formObject),
+          })
+            .then((response) => {
+              if (response.ok) {
+                alert("Voucher đã được thêm thành công!"); // Thông báo thành công
+                document.getElementById("addVoucherForm").reset(); // Xóa dữ liệu form
+              } else {
+                alert("Đã có lỗi xảy ra, vui lòng thử lại!"); // Thông báo khi gặp lỗi
+              }
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+              alert("Đã có lỗi xảy ra trong quá trình gửi dữ liệu!");
+            });
         });
     });
   </script>
