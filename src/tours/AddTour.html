@@ -65,7 +65,7 @@
                                 <a href="../tours/ListTour.html" class="sidebar-link">Danh sách Tours</a>
                             </li>
                             <li class="sidebar-item">
-                                <a href="../tours/AddTour.html" class="sidebar-link">Thêm Tour</a>
+                                <a href="../tours/AddTourDemo.html" class="sidebar-link">Thêm Tour</a>
                             </li>
                         </ul>
                     </li>
@@ -373,15 +373,40 @@
             console.log(error);
         })
 
-    // add tour
+    const renderImages = () => {
+        strLinkImage = '';
+        arraylink.forEach((item, index) => {
+            strLinkImage += `
+            <div class="col-sm-4 position-relative">
+                <button type="button" class="btn btn-danger btn-sm position-absolute top-0 end-0 m-1" onclick="deleteImage(${index})">
+                    &times;
+                </button>
+                <img src="${item}" style="height: 200px; width: 100%;" class="img-thumbnail mx-auto d-block" alt="Image">
+            </div>`;
+        });
+        document.getElementById('hinh').innerHTML = strLinkImage;
+    };
+    const deleteImage = (index) => {
+        if (confirm("Bạn có chắc chắn muốn xóa hình này không?")) {
+            arraylink.splice(index, 1); // Xóa hình tại vị trí index
+            renderImages(); // Render lại danh sách hình ảnh
+        }
+    };
+
+
     var strLinkImage = ``;
     // thêm input nhập link ảnh
     var arraylink = []
     const themLinkHinh = async () => {
         const linkImage = document.getElementById('linkImage').value
-        console.log("==========array", arraylink);
-        document.getElementById('linkImage').value = ""
-        await imageCloudinary(linkImage);
+        if (linkImage == "") {
+            alert('Bạn chưa có link hình')
+        } else {
+            console.log("==========array", arraylink);
+            document.getElementById('linkImage').value = ""
+            await imageCloudinary(linkImage);
+        }
+
     }
 
     // add location
@@ -445,13 +470,14 @@
             console.log("===============", imageClou.data.secure_url);
             arraylink.push(imageClou.data.secure_url)
             strLinkImage = '';
-            arraylink.forEach((item, index) => {
-                strLinkImage +=
-                    `<div class = "col-sm-4"> 
-                        <img src="${arraylink[index]}" style="height: 200px; width:400px;" class="img-thumbnail mx-auto d-block" alt="Cinque Terre">
-                </div>`;
-            })
-            document.getElementById('hinh').innerHTML = strLinkImage
+            renderImages()
+            // arraylink.forEach((item, index) => {
+            //     strLinkImage +=
+            //         `<div class = "col-sm-4"> 
+            //             <img src="${arraylink[index]}" style="height: 200px; width:400px;" class="img-thumbnail mx-auto d-block" alt="Cinque Terre">
+            //     </div>`;
+            // })
+            // document.getElementById('hinh').innerHTML = strLinkImage
         } catch (error) {
             console.log(error);
 

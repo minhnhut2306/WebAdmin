@@ -399,9 +399,14 @@
     var arraylink = []
     const themLinkHinh = async () => {
         const linkImage = document.getElementById('linkImage').value
-        console.log("==========array", arraylink);
-        document.getElementById('linkImage').value = ""
-        await imageCloudinary(linkImage);
+        if (linkImage == "") {
+            alert('Bạn chưa có link hình')
+        } else {
+            console.log("==========array", arraylink);
+            document.getElementById('linkImage').value = ""
+            await imageCloudinary(linkImage);
+        }
+
     }
 
     // add location
